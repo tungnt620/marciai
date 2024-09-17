@@ -76,15 +76,15 @@ struct WorkflowCommandListScrollView: View {
             return true
           })
           .contentShape(Rectangle())
-          .contextMenu(menuItems: {
-            WorkflowCommandListContextMenuView(
-              command,
-              workflowId: workflowId,
-              publisher: publisher,
-              selectionManager: selectionManager,
-              onAction: onAction
-            )
-          })
+//          .contextMenu(menuItems: {
+//            WorkflowCommandListContextMenuView(
+//              command,
+//              workflowId: workflowId,
+//              publisher: publisher,
+//              selectionManager: selectionManager,
+//              onAction: onAction
+//            )
+//          })
           .focusable(focus, as: .detail(.command(command.id))) {
             selectionManager.handleOnTap(publisher.data.commands, element: command)
           }

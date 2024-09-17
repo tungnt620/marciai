@@ -61,7 +61,9 @@ struct KeyboardCowboy: App {
     EmptyConfigurationWindow(onAction: core.contentStore.handle(_:))
     PermissionsWindow()
     PermissionsScene(onAction: handlePermissionAction(_:))
-    ReleaseNotesScene()
+    
+    // TODO:uncomment to show release note
+//    ReleaseNotesScene()
 
     NewCommandWindow(contentStore: core.contentStore, 
                      uiElementCaptureStore: core.uiElementCaptureStore,

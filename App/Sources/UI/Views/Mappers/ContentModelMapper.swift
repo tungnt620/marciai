@@ -208,6 +208,8 @@ private extension Array where Element == Command {
                   kind: .command(.text(.init(kind: .type(.init(id: command.id, mode: command.mode, input: command.input))))))
           )
         }
+      case .chatGpt(let command):
+        images.append(.init(id: command.id, offset: convertedOffset, kind: .command(.chatGpt(.init(id: command.id, promt: command.prompt)))))
       case .systemCommand(let command):
         images.append(
           ContentViewModel.ImageModel(

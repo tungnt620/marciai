@@ -24,6 +24,7 @@ struct NewCommandView: View {
     case uiElement = "UI Element Command"
     case url = "URL"
     case open = "Open"
+    case chatGpt = "ChatGpt"
     case keyboardShortcut = "Keyboard Shortcut"
     case shortcut = "Shortcut"
     case script = "Script"
@@ -235,6 +236,8 @@ struct NewCommandView: View {
                           onSubmitAddress: { onSave(payload, $title.wrappedValue) })
       case .open:
         NewCommandOpenView($payload, validation: $validation)
+      case .chatGpt:
+        NewCommandChatGptView($payload, validation: $validation)
       case .keyboardShortcut:
         NewCommandKeyboardShortcutView($payload, validation: $validation)
       case .shortcut:

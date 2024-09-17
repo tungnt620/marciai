@@ -23,6 +23,8 @@ extension Command {
         } else {
           return "Open a file: \(command.path)"
         }
+      case .chatGpt(let command):
+        return command.name
       case .shortcut(let command):
         return command.name
       case .script(let command):
@@ -55,6 +57,9 @@ extension Command {
       case .open(var command):
         command.name = newValue
         self = .open(command)
+      case .chatGpt(var command):
+        command.name = newValue
+        self = .chatGpt(command)
       case .script(var command):
         command.name = newValue
         self = .script(command)

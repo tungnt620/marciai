@@ -169,6 +169,7 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
       case .menuBar(let menuBarCommand): menuBarCommand.meta
       case .mouse(let mouseCommand): mouseCommand.meta
       case .open(let openCommand): openCommand.meta
+      case .chatGpt(let chatGptCommand): chatGptCommand.meta
       case .script(let scriptCommand): scriptCommand.meta
       case .shortcut(let shortcutCommand): shortcutCommand.meta
       case .systemCommand(let systemCommand): systemCommand.meta
@@ -197,6 +198,9 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
       case .open(var openCommand):
         openCommand.meta = newValue
         self = .open(openCommand)
+      case .chatGpt(var chatGptCommand):
+        chatGptCommand.meta = newValue
+        self = .chatGpt(chatGptCommand)
       case .shortcut(var shortcutCommand):
         shortcutCommand.meta = newValue
         self = .shortcut(shortcutCommand)
@@ -225,6 +229,7 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
   case mouse(MouseCommand)
   case menuBar(MenuBarCommand)
   case open(OpenCommand)
+  case chatGpt(ChatGptCommand)
   case shortcut(ShortcutCommand)
   case script(ScriptCommand)
   case text(TextCommand)
@@ -243,6 +248,7 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
     case menuBar = "menuBarCommand"
     case mouse = "mouseCommand"
     case open = "openCommand"
+    case chatGpt = "chatGptCommand"
     case shortcut = "runShortcut"
     case script = "scriptCommand"
     case text = "textCommand"
@@ -292,6 +298,9 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
     case .open:
       let command = try container.decode(OpenCommand.self, forKey: .open)
       self = .open(command)
+    case .chatGpt:
+      let command = try container.decode(ChatGptCommand.self, forKey: .chatGpt)
+      self = .chatGpt(command)
     case .script:
       let command = try container.decode(ScriptCommand.self, forKey: .script)
       self = .script(command)
@@ -328,6 +337,7 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
     case .keyboard(let command): try container.encode(command, forKey: .keyboard)
     case .menuBar(let command): try container.encode(command, forKey: .menuBar)
     case .mouse(let command): try container.encode(command, forKey: .mouse)
+    case .chatGpt(let command): try container.encode(command, forKey: .chatGpt)
     case .open(let command): try container.encode(command, forKey: .open)
     case .script(let command): try container.encode(command, forKey: .script)
     case .shortcut(let command): try container.encode(command, forKey: .shortcut)
@@ -346,6 +356,7 @@ enum Command: MetaDataProviding, Identifiable, Equatable, Codable, Hashable, Sen
     case .mouse(let mouseCommand): .mouse(mouseCommand.copy())
     case .menuBar(let menuBarCommand): .menuBar(menuBarCommand.copy())
     case .open(let openCommand): .open(openCommand.copy())
+    case .chatGpt(let chatGptCommand): .chatGpt(chatGptCommand.copy())
     case .shortcut(let shortcutCommand): .shortcut(shortcutCommand.copy())
     case .script(let scriptCommand): .script(scriptCommand.copy())
     case .text(let textCommand): .text(textCommand.copy())
@@ -368,6 +379,7 @@ extension Command {
     case .menuBar: Command.menuBar(MenuBarCommand(application: nil, tokens: []))
     case .mouse: Command.mouse(MouseCommand.empty())
     case .open: Command.open(.init(path: "", notification: nil))
+    case .chatGpt: Command.chatGpt(.init(prompt: ""))
     case .script: Command.script(.init(name: "", kind: .appleScript, source: .path(""), notification: nil))
     case .shortcut: Command.shortcut(.init(id: id, shortcutIdentifier: "", name: "", isEnabled: true, notification: nil))
     case .text: Command.text(.init(.insertText(.init("", mode: .instant, meta: MetaData(id: id)))))

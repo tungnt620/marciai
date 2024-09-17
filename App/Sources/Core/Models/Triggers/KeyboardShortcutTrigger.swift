@@ -6,7 +6,8 @@ struct KeyboardShortcutTrigger: Hashable, Codable, Equatable {
   var holdDuration: Double?
   let shortcuts: [KeyShortcut]
 
-  init(passthrough: Bool = false, 
+  // Note: hard code passthrough = false
+  init(passthrough: Bool = false,
        holdDuration: Double? = nil,
        shortcuts: [KeyShortcut]) {
     self.passthrough = passthrough

@@ -186,7 +186,8 @@ extension Workflow {
     Workflow(
       id: id,
       name: "Untitled workflow",
-      trigger: nil,
+      // :Note Hard code keyboard trigger
+      trigger: .keyboardShortcuts(.init(shortcuts:[.init(key: "T", modifiers: [.function])])),
       commands: []
     )
   }
@@ -215,7 +216,8 @@ extension Workflow {
       switch command {
       case .application, .builtIn, .mouse, 
            .keyboard, .menuBar, .shortcut,
-           .systemCommand, .uiElement, .windowManagement:
+           .systemCommand, .uiElement, .windowManagement,
+           .chatGpt:
         result = false
       case .open(let openCommand):
         result = openCommand.path.contains(keywords)

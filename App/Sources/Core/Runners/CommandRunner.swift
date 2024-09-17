@@ -24,6 +24,7 @@ final class CommandRunner: CommandRunning, @unchecked Sendable {
     let menubar: MenuBarCommandRunner
     let mouse: MouseCommandRunner
     let open: OpenCommandRunner
+    let chatGpt: ChatGptCommandRunner
     let script: ScriptCommandRunner
     let shortcut: ShortcutsCommandRunner
     let system: SystemCommandRunner
@@ -76,6 +77,7 @@ final class CommandRunner: CommandRunning, @unchecked Sendable {
       menubar: MenuBarCommandRunner(),
       mouse: MouseCommandRunner(),
       open: OpenCommandRunner(scriptCommandRunner, workspace: workspace),
+      chatGpt: ChatGptCommandRunner(keyboardCommandRunner),
       script: scriptCommandRunner,
       shortcut: ShortcutsCommandRunner(scriptCommandRunner),
       system: systemCommandRunner,
@@ -112,7 +114,7 @@ final class CommandRunner: CommandRunning, @unchecked Sendable {
 
           _ = try await runners.script.run(shellScript, environment: [:], checkCancellation: false)
         }
-      case .builtIn, .keyboard, .text,
+      case .builtIn, .keyboard, .text, .chatGpt,
           .systemCommand, .menuBar, .windowManagement, 
           .mouse, .uiElement:
         break
@@ -278,6 +280,11 @@ final class CommandRunner: CommandRunning, @unchecked Sendable {
       let path = snapshot.interpolateUserSpaceVariables(openCommand.path, runtimeDictionary: runtimeDictionary)
       try await runners.open.run(path, checkCancellation: checkCancellation, application: openCommand.application)
       output = path
+    case .chatGpt(let chatGptCommand):
+      try await runners.chatGpt.run(
+        snapshot.interpolateUserSpaceVariables(chatGptCommand.prompt, runtimeDictionary: runtimeDictionary)
+      )
+      output = command.name
     case .script(let scriptCommand):
       let result = try await self.runners.script.run(
         scriptCommand,

@@ -58,6 +58,7 @@ struct ContainerView: View {
     NavigationSplitView(
       columnVisibility: $navigationPublisher.columnVisibility,
       sidebar: {
+        // Mote: hide sidebar
         SidebarView(
           focus,
           configSelectionManager: configSelectionManager,

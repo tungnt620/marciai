@@ -27,6 +27,8 @@ struct NewCommandImageView: View {
         ScriptIconView(size: 24)
       case .text:
         TypingIconView(size: 24)
+      case .chatGpt:
+        image(for: "/System/Applications/Shortcuts.app")
       case .system:
         image(for: "/System")
       case .menuBar:

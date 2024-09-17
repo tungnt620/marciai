@@ -22,6 +22,7 @@ struct ContentView: View {
       case snippet = "snippet"
       case shortcut = "shortcut"
       case text = "text"
+      case chatGpt = "chatGpt"
       case systemCommand = "system"
       case menuBar = "menubar"
       case mouse = "mouse"
@@ -403,6 +404,7 @@ fileprivate extension CommandViewModel.Kind {
     case .plain: .plain
     case .shortcut: .shortcut
     case .text: .text
+    case .chatGpt: .chatGpt
     case .systemCommand: .systemCommand
     case .menuBar: .menuBar
     case .mouse: .mouse

@@ -38,6 +38,8 @@ struct ContentImageView: View {
         ContentShortcutImageView(size: size)
       case .text:
         TypingIconView(size: size - 6)
+      case .chatGpt:
+        ContentChatGptImageView(size: size)
       case .mouse:
         MouseIconView(size: size - 6)
       case .plain:

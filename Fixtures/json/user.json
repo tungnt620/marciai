@@ -1,0 +1,189 @@
+[
+  {
+    "userModes" : [
+
+    ],
+    "name" : "Tung",
+    "groups" : [
+      {
+        "color" : "#3984F7",
+        "id" : "79DDF9DC-130C-42C3-8DEF-E851FDD8D388",
+        "symbol" : "book",
+        "name" : "Global group",
+        "userModes" : [
+
+        ],
+        "workflows" : [
+          {
+            "name" : "Open chrome",
+            "id" : "117413D9-3BA3-45A2-B21C-376682030397",
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "modifiers" : [
+
+                  ],
+                  "meta" : {
+                    "id" : "89BBC32F-BDF4-483F-8681-1C3BEA672D54",
+                    "enabled" : true,
+                    "name" : "Open Google Chrome"
+                  },
+                  "application" : {
+                    "bundleIdentifier" : "com.google.Chrome",
+                    "metadata" : {
+                      "isElectron" : false,
+                      "isAgent" : false,
+                      "isSafariWebApp" : false
+                    },
+                    "bundleName" : "Chrome",
+                    "path" : "\/Applications\/Google Chrome.app"
+                  }
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "A97CB2DA-668A-4D79-A646-FA594E4AF4C3",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "key" : "c",
+                    "lhs" : true
+                  }
+                ],
+                "passthrough" : false
+              }
+            },
+            "execution" : "concurrent"
+          },
+          {
+            "execution" : "concurrent",
+            "id" : "BB694F12-E85E-426B-A2CD-AE464F03FE96",
+            "name" : "Open IDE",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "key" : "i",
+                    "id" : "93016AA3-3F94-49D1-A4F3-597A748C1DB8",
+                    "lhs" : true
+                  }
+                ]
+              }
+            },
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "application" : {
+                    "path" : "\/Applications\/IntelliJ IDEA.app",
+                    "bundleIdentifier" : "com.jetbrains.intellij",
+                    "metadata" : {
+                      "isElectron" : false,
+                      "isSafariWebApp" : false,
+                      "isAgent" : false
+                    },
+                    "bundleName" : "IntelliJ IDEA"
+                  },
+                  "modifiers" : [
+
+                  ],
+                  "action" : "open",
+                  "meta" : {
+                    "name" : "Open IntelliJ IDEA",
+                    "enabled" : true,
+                    "id" : "A62C1665-AB91-41AA-BEBE-5A37EDCBFF71"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "execution" : "concurrent",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "id" : "38BAA57D-3611-41B5-AF47-458ACF0639AF",
+                    "lhs" : true,
+                    "key" : "T"
+                  }
+                ],
+                "passthrough" : false
+              }
+            },
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "meta" : {
+                    "id" : "A31AAD78-5FBD-46D3-9414-4C15EA932325",
+                    "name" : "Open iTerm",
+                    "enabled" : true
+                  },
+                  "application" : {
+                    "bundleIdentifier" : "com.googlecode.iterm2",
+                    "metadata" : {
+                      "isSafariWebApp" : false,
+                      "isElectron" : false,
+                      "isAgent" : false
+                    },
+                    "path" : "\/Applications\/iTerm.app",
+                    "bundleName" : "iTerm2"
+                  },
+                  "modifiers" : [
+
+                  ],
+                  "action" : "open"
+                }
+              }
+            ],
+            "id" : "5AB6B387-604D-462F-A3C8-B910C7F61D3E",
+            "name" : "Open terminal"
+          },
+          {
+            "execution" : "concurrent",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "2132132\n22132132321\n2121321321\n2132 21 32 13 21 321 2321\n13\n21\n321",
+                  "meta" : {
+                    "name" : "ChatGptCommand",
+                    "enabled" : true,
+                    "id" : "EE150498-C4C9-43B9-9203-1B464F4CBF60"
+                  }
+                }
+              }
+            ],
+            "id" : "4B3F4434-CFA3-43F6-AD92-8D865D318018",
+            "name" : "Untitled workflow",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "lhs" : true,
+                    "key" : "c",
+                    "id" : "299F2171-32CC-4A7E-A754-5E63BA0EA283"
+                  }
+                ],
+                "passthrough" : false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "id" : "D7C4C10A-4CA5-4BDC-ABC0-5FB0B701350A"
+  }
+]

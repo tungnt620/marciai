@@ -105,6 +105,8 @@ private extension Command {
       case .insertText(let typeCommand):
         kind = .text(.init(kind: .type(.init(id: typeCommand.input, mode: typeCommand.mode, input: typeCommand.input))))
       }
+    case .chatGpt(let chatGpt):
+      kind = .chatGpt(.init(id: chatGpt.id, promt: chatGpt.prompt))
     case .systemCommand(let systemCommand):
       kind = .systemCommand(.init(id: systemCommand.id, kind: systemCommand.kind))
     case .uiElement(let uiElementCommand):

@@ -17,7 +17,7 @@ struct PermissionsView: View {
         KeyboardCowboyAsset.applicationIcon.swiftUIImage
           .resizable()
           .frame(width: 84, height: 84)
-        Text("Accessibility permissions are required for Keyboard Cowboy application to function properly.")
+        Text("Accessibility permissions are required for ReWrite application to function properly.")
           .font(.title2)
       }
       .padding([.leading, .top, .trailing], 16)
@@ -31,18 +31,9 @@ struct PermissionsView: View {
             Text("Rest assured that we do not use this information for any purpose other than to serve you.")
           }
           .font(.headline)
-          Text("Keyboard Cowboy comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
-          Text("Keyboard Cowboy is designed to be secure and private.")
+          Text("ReWrite comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
+          Text("ReWrite is designed to be secure and private.")
             .font(.headline)
-          Text("It does not collect any personal information or send any data to third parties. All data is stored locally on your computer and is never transmitted over the internet.")
-          Text("Additionally, Keyboard Cowboy is 100% open source, so you can review the code for yourself.")
-
-          Text("tl;dr")
-            .bold()
-
-          Text("We don't stalk you, we don't collect your data, we don't sell your data. We don't even know who you are. But we care about your privacy and security. ❤️")
-
-          Text("If you have any concerns, please contact us.")
         }
         .padding(.vertical, 32)
         .padding(.horizontal, 48)
@@ -51,14 +42,8 @@ struct PermissionsView: View {
       .background(Color.black.opacity(0.2).clipShape(RoundedRectangle(cornerRadius: 8)))
 
       ZenDivider()
-
+      
       HStack(spacing: 16) {
-        Button("View source code", action: {
-          onAction(.github)
-        })
-        .buttonStyle(.calm(color: .systemGreen, padding: .medium))
-        Spacer()
-
         Button("Request permission", action: {
           done.toggle()
           onAction(.requestPermissions)
@@ -68,7 +53,7 @@ struct PermissionsView: View {
       .roundedContainer()
     }
     .compositingGroup()
-    .frame(minHeight: 560, maxHeight: .infinity, alignment: .top)
+    .frame(minHeight: 300, maxHeight: .infinity, alignment: .top)
     .background(SplashView(done: $done))
     .onAppear {
       animated = true

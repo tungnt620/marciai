@@ -19,8 +19,8 @@ struct WorkflowCommandListHeaderAddView: View {
         Image(systemName: "plus.app")
           .resizable()
           .aspectRatio(contentMode: .fit)
-          .frame(width: 12, height: 12)
-          .padding(2)
+          .frame(width: 24, height: 24)
+          .padding(4)
           .layoutPriority(-1)
       }
     }

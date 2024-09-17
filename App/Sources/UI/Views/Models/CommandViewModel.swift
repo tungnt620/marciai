@@ -52,6 +52,7 @@ struct CommandViewModel: Codable, Hashable, Identifiable, Transferable {
     case plain
     case shortcut(ShortcutModel)
     case text(TextModel)
+    case chatGpt(ChatGptModel)
     case systemCommand(SystemModel)
     case menuBar(MenuBarModel)
     case mouse(MouseModel)
@@ -155,6 +156,12 @@ struct CommandViewModel: Codable, Hashable, Identifiable, Transferable {
 
         case type(TypeModel)
       }
+    }
+
+    struct ChatGptModel: Codable, Hashable, Identifiable, Sendable {
+      let id: String
+      var placeholder: String { "Type promt …" }
+      var promt: String
     }
 
     struct WindowManagementModel: Codable, Hashable, Identifiable, Sendable {

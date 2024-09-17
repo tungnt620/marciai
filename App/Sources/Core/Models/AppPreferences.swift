@@ -5,6 +5,8 @@ private let rootFolder = URL(fileURLWithPath: #file).pathComponents
   .joined(separator: "/")
   .dropFirst()
 
+// TODO: hard code configuration for ReWrite application
+
 struct AppPreferences {
   var hideAppOnLaunch: Bool = true
   var machportIsEnabled = true
@@ -21,6 +23,11 @@ struct AppPreferences {
       hideAppOnLaunch: true,
       machportIsEnabled: true,
       storageConfiguration: StorageConfiguration(path: "~/", filename: ".keyboard-cowboy.json"))
+//      // Hard code the configuration file
+//      // At first version we only allow user config one configuration and one group
+//      // In a group can have multiple workflow
+//      storageConfiguration: StorageConfiguration(path: rootFolder.appending("/KeyboardCowboy/Fixtures/json"),
+//                                                 filename: filename(for: #function)))
   }
 
   static func development() -> AppPreferences {

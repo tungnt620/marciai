@@ -146,6 +146,10 @@ final class DetailCoordinator {
       case .insertText(let typeCommand):
         command = .text(.init(.insertText(typeCommand)))
       }
+    case .chatGpt(let promt):
+      command = Command.chatGpt(.init(id: resolvedCommandId,
+                                   prompt: promt,
+                                   notification: nil))
     case .shortcut(let name):
       command = .shortcut(.init(id: resolvedCommandId, shortcutIdentifier: name,
                                 name: name, isEnabled: true, notification: nil))
@@ -305,6 +309,7 @@ extension CommandView.Kind {
         .script(_, let payload),
         .shortcut(_, let payload),
         .type(_, let payload),
+        .chatGpt(_, let payload),
         .system(_, let payload),
         .uiElement(_, let payload),
         .window(_, let payload):
@@ -322,6 +327,7 @@ extension CommandView.Kind {
         .script(_, let payload),
         .shortcut(_, let payload),
         .type(_, let payload),
+        .chatGpt(_, let payload),
         .system(_, let payload),
         .uiElement(_, let payload),
         .window(_, let payload):

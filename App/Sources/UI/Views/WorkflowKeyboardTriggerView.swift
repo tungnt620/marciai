@@ -44,10 +44,10 @@ struct WorkflowKeyboardTriggerView: View {
       }
 
       HStack {
-        ZenCheckbox("Passthrough", style: .small, isOn: $passthrough) { newValue in
-          onAction(.togglePassthrough(workflowId: workflowId, newValue: newValue))
-        }
-        .font(.caption)
+//        ZenCheckbox("Passthrough", style: .small, isOn: $passthrough) { newValue in
+//          onAction(.togglePassthrough(workflowId: workflowId, newValue: newValue))
+//        }
+//        .font(.caption)
         Spacer()
         if trigger.shortcuts.count == 1 {
           Text("Hold for")

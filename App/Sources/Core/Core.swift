@@ -3,9 +3,10 @@ import InputSources
 
 @MainActor
 final class Core {
+  // We can change app preference config here
   static var config: AppPreferences {
     switch KeyboardCowboy.env() {
-    case .development: .designTime()
+    case .development: .user()
     case .previews: .designTime()
     case .production: .user()
     }

@@ -256,6 +256,28 @@ final class DetailCommandActionReducer {
           DetailCommandContainerActionReducer.reduce(action, command: &command, workflow: &workflow)
           workflow.updateOrAddCommand(command)
         }
+      case .chatGpt(let action, _):
+        switch action {
+        case .updateName(let newName):
+          command.name = newName
+          workflow.updateOrAddCommand(command)
+        case .updatePromt(let newPromt):
+          switch command {
+          case .chatGpt(let chatGptCommand):
+            command = .chatGpt(
+              .init(
+                id: command.id,
+                prompt: newPromt
+              )
+            )
+          default:
+            fatalError("Wrong command type")
+          }
+          workflow.updateOrAddCommand(command)
+        case .commandAction(let action):
+          DetailCommandContainerActionReducer.reduce(action, command: &command, workflow: &workflow)
+          workflow.updateOrAddCommand(command)
+        }
       case .system(let action, _):
         switch action {
         case .commandAction(let action):

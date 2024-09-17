@@ -70,6 +70,11 @@ final class Storage: @unchecked Sendable {
       await Benchmark.shared.stop("Storage.load")
       return result
     } catch {
+      // Log the error and its details
+      print("An error occurred: \(error.localizedDescription)")
+      print("Error details: \(error)")
+      print("Stack trace: \(Thread.callStackSymbols.joined(separator: "\n"))")
+
       do {
         let result = try await migrateIfNeeded()
         await Benchmark.shared.stop("Storage.load")
@@ -77,6 +82,12 @@ final class Storage: @unchecked Sendable {
       } catch {
         await Benchmark.shared.stop("Storage.load")
         // TODO: Do something proper here.
+        
+        // Log the error and its details
+        print("An error occurred: \(error.localizedDescription)")
+        print("Error details: \(error)")
+        print("Stack trace: \(Thread.callStackSymbols.joined(separator: "\n"))")
+        
         fatalError("Unable to load contents")
       }
     }
@@ -107,6 +118,12 @@ final class Storage: @unchecked Sendable {
       let data = try encoder.encode(configurations)
       fileManager.createFile(atPath: configuration.url.path, contents: data, attributes: nil)
     } catch let error {
+      
+      // Log the error and its details
+      print("An error occurred: \(error.localizedDescription)")
+      print("Error details: \(error)")
+      print("Stack trace: \(Thread.callStackSymbols.joined(separator: "\n"))")
+      
       throw StorageError.unableToSaveContents(error)
     }
   }

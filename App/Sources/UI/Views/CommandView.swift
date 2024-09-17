@@ -21,6 +21,7 @@ struct CommandView: View {
     case script(action: ScriptCommandView.Action, payload: CommandViewPayload)
     case shortcut(action: ShortcutCommandView.Action, payload: CommandViewPayload)
     case type(action: TypeCommandView.Action, payload: CommandViewPayload)
+    case chatGpt(action: ChatGptCommandView.Action, payload: CommandViewPayload)
     case system(action: SystemCommandView.Action, payload: CommandViewPayload)
     case uiElement(action: UIElementCommandView.Action, payload: CommandViewPayload)
     case window(action: WindowManagementCommandView.Action, payload: CommandViewPayload)
@@ -181,6 +182,15 @@ struct CommandResolverView: View {
           onAction(.modify(.type(action: action, payload: payload)))
         }
       })
+    case .chatGpt(let model):
+      ChatGptCommandView(command.meta, model: model, iconSize: iconSize) { action in
+          switch action {
+          case .commandAction(let action):
+            handleCommandContainerAction(action)
+          default:
+            onAction(.modify(.chatGpt(action: action, payload: payload)))
+          }
+        }
     case .systemCommand(let model):
       SystemCommandView(command.meta, model: model, iconSize: iconSize) { action in
         switch action {

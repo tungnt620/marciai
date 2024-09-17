@@ -183,4 +183,4 @@ final class SystemWindowTilingRunner {
   }
 }
 
-extension UserDefaults: @unchecked @retroactive Sendable { }
+extension UserDefaults: @unchecked Sendable { }

@@ -88,15 +88,16 @@ private struct WorkflowTriggerHeaderView: View {
     HStack {
       ZenLabel(text)
       Spacer()
-      Button(action: { onRemove?() },
-             label: {
-        Image(systemName: "xmark")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 10, height: 10)
-      })
-      .buttonStyle(.calm(color: .systemRed, padding: .medium))
-      .opacity(onRemove != nil ? 1 : 0)
+      // Note: Hard code remove Deletion button
+//      Button(action: { onRemove?() },
+//             label: {
+//        Image(systemName: "xmark")
+//          .resizable()
+//          .aspectRatio(contentMode: .fit)
+//          .frame(width: 10, height: 10)
+//      })
+//      .buttonStyle(.calm(color: .systemRed, padding: .medium))
+//      .opacity(onRemove != nil ? 1 : 0)
     }
     .padding([.leading, .trailing], 8)
   }

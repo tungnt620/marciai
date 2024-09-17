@@ -12,6 +12,7 @@ enum NewCommandPayload: Equatable {
   case shortcut(name: String)
   case keyboardShortcut([KeyShortcut])
   case text(TextCommand)
+  case chatGpt(promt: String)
   case systemCommand(kind: SystemCommand.Kind)
   case menuBar(tokens: [MenuBarCommand.Token], application: Application?)
   case mouse(kind: MouseCommand.Kind)
@@ -66,6 +67,8 @@ enum NewCommandPayload: Equatable {
       return keyboardShortcutString
     case .text:
       return "Text editing"
+    case .chatGpt:
+      return "Chat GPT Command"
     case .systemCommand:
       return "System Command"
     case .menuBar:

@@ -129,6 +129,8 @@ struct NewCommandWindow: Scene {
       return .keyboardShortcut(command.keyboardShortcuts)
     case .open(let openCommand):
       return .open(path: openCommand.path, application: openCommand.application)
+    case .chatGpt(let chatGptCommand):
+      return .chatGpt(promt: chatGptCommand.prompt)
     case .shortcut(let shortcutCommand):
       return .shortcut(name: shortcutCommand.name)
     case .script(let scriptCommand):
@@ -178,6 +180,7 @@ struct NewCommandWindow: Scene {
     case .menuBar: .menuBar
     case .mouse: .mouse
     case .open: .open
+    case .chatGpt: .chatGpt
     case .shortcut: .shortcut
     case .script: .script
     case .text: .text

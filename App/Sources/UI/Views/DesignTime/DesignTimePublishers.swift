@@ -247,6 +247,12 @@ enum DesignTime {
     return (.init(meta: metadata(name: "Typing...", icon: nil), kind: .text(.init(kind: .type(.init(id: UUID().uuidString, mode: .instant, input: ""))))), kind)
   }
 
+  static var chatGptCommand: (model: CommandViewModel, kind: CommandViewModel.Kind.ChatGptModel) {
+    let kind = CommandViewModel.Kind.ChatGptModel(id: UUID().uuidString,
+                                               promt: "promt ...")
+    return (.init(meta: metadata(name: "Chat GPT", icon: nil), kind: .chatGpt(kind)), kind)
+  }
+  
   static func windowCommand(_ kind: WindowCommand.Kind) -> (model: CommandViewModel, kind: WindowCommand.Kind) {
     let model = CommandViewModel.Kind.WindowManagementModel(id: UUID().uuidString, kind: kind, animationDuration: 0)
     return (.init(meta: metadata(name: "Window Management", icon: nil), kind: .windowManagement(model)), kind)
