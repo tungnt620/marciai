@@ -33,6 +33,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     let commandLineWindow = NSApp.windows.first(where: { $0.identifier?.rawValue == "CommandLineWindow" })
 
     if commandLineWindow?.isVisible == true { return }
+    
+    let chatGptResultWindow = NSApp.windows.first(where: { $0.identifier?.rawValue == "chatGptResultWindow" })
+    if chatGptResultWindow?.isVisible == true { return }
 
     let mainWindow = NSApp.windows.mainWindow()
 

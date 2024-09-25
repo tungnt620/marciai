@@ -39,8 +39,9 @@ struct SidebarView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
-      ConfigurationContainerView(configSelectionManager: configSelectionManager,
-                                 onAction: onAction)
+      // Hide ui
+//      ConfigurationContainerView(configSelectionManager: configSelectionManager,
+//                                 onAction: onAction)
 
       GroupContainerView(namespace,
                          contentSelectionManager: contentSelectionManager,
@@ -48,7 +49,8 @@ struct SidebarView: View {
                          onAction: onAction,
                          focus: focus)
 
-      UserModeContainerView(onAction: onAction)
+      // Hide ui
+//      UserModeContainerView(onAction: onAction)
     }
   }
 }
