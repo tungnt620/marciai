@@ -2,29 +2,29 @@
 <img src="https://github.com/zenangst/KeyboardCowboy/blob/main/Assets/Wiki/Home/Bento.png?raw=true" width="100%" alt="Application image" align="center" />
 </div>
 
-# Keyboard Cowboy 3
+# MarciAI 3
 [![Test](https://github.com/zenangst/KeyboardCowboy/actions/workflows/test.yml/badge.svg)](https://github.com/zenangst/KeyboardCowboy/actions/workflows/test.yml)
-<img src="https://github.com/zenangst/KeyboardCowboy/blob/main/App/Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256.png?raw=true" alt="Keyboard Cowboy Icon" width="20%" align="right" />
+<img src="https://github.com/zenangst/KeyboardCowboy/blob/main/App/Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256.png?raw=true" alt="MarciAI Icon" width="20%" align="right" />
 
-### Boost macOS productivity with Keyboard Cowboy.
+### Boost macOS productivity with MarciAI.
 
-Introducing Keyboard Cowboy - the ultimate productivity app for macOS that empowers users with incredible efficiency and control,
+Introducing MarciAI - the ultimate productivity app for macOS that empowers users with incredible efficiency and control,
 all at the tip of their fingers.
 
-[Download Keyboard Cowboy today](https://github.com/zenangst/KeyboardCowboy/releases), and see what you can accomplish when you saddle up and take control of your Mac like a true cowboy. Experience the incredible power and efficiency of Keyboard Cowboy for yourself and take your macOS experience to the next level.
+[Download MarciAI today](https://github.com/zenangst/KeyboardCowboy/releases), and see what you can accomplish when you saddle up and take control of your Mac like a true cowboy. Experience the incredible power and efficiency of MarciAI for yourself and take your macOS experience to the next level.
 
 ### System Requirements
 
-Keyboard Cowboy supports macOS v13.0+.
+MarciAI supports macOS v13.0+.
 
 <hr/>
 
 
 ## Simplify complex tasks and streamline workflows for Mac users.
 
-With Keyboard Cowboy, users can automate repetitive actions, launch applications and scripts, control system settings, manipulate files and folders, and perform a wide range of actions – all without ever having to take their hands off the keyboard.
+With MarciAI, users can automate repetitive actions, launch applications and scripts, control system settings, manipulate files and folders, and perform a wide range of actions – all without ever having to take their hands off the keyboard.
 
-Keyboard Cowboy's intuitive interface and simple setup process make it easy for users of all levels to get started. And with its lightning-fast performance and seamless integration with macOS, Keyboard Cowboy is the ultimate tool for power users and casual users alike.
+MarciAI's intuitive interface and simple setup process make it easy for users of all levels to get started. And with its lightning-fast performance and seamless integration with macOS, MarciAI is the ultimate tool for power users and casual users alike.
 
 # The best shortcut is no shortcut at all.
 <div align="center">
@@ -45,9 +45,9 @@ By assigning frequently-used commands to the function key, you can streamline yo
 
 ### Security and Privacy
 
-Keyboard Cowboy is designed to be secure and private. It does not collect any personal information or send any data to third parties. All data is stored locally on your computer and is never transmitted over the internet.
+MarciAI is designed to be secure and private. It does not collect any personal information or send any data to third parties. All data is stored locally on your computer and is never transmitted over the internet.
 
-In addition, macOS comes with built in security, so Keyboard Cowboy will be disabled when you are focsed on a password field or when you are in a secure input mode.
+In addition, macOS comes with built in security, so MarciAI will be disabled when you are focsed on a password field or when you are in a secure input mode.
 
 **tl;dr**
 
@@ -74,9 +74,9 @@ Create a new `.env` file in the root folder.
 Add the following contents to the `.env`-file.
 
 ```fish
-APP_NAME=Keyboard Cowboy
+APP_NAME=MarciAI
 APP_SCHEME=Keyboard-Cowboy
-APP_BUNDLE_IDENTIFIER=com.zenangst.Keyboard-Cowboy
+APP_BUNDLE_IDENTIFIER=com.tung.MarciAI
 TEAM_ID=XXXXXXXXXX
 PACKAGE_DEVELOPMENT=false
 ```

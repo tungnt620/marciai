@@ -23,9 +23,9 @@ jobs:
       - name: Install & Run tuist
         run: |
           touch .env
-          echo "APP_NAME=Keyboard Cowboy" >> .env
+          echo "APP_NAME=MarciAI" >> .env
           echo -e "APP_SCHEME=Keyboard-Cowboy" >> .env
-          echo -e "APP_BUNDLE_IDENTIFIER=com.zenangst.Keyboard-Cowboy" >> .env
+          echo -e "APP_BUNDLE_IDENTIFIER=com.tung.MarciAI" >> .env
           echo -e "TEAM_ID=XXXXXXXXXX" >> .env
           echo -e "PACKAGE_DEVELOPMENT=false" >> .env
           brew install tuist
@@ -34,7 +34,7 @@ jobs:
       - name: Run tests
         uses: sersoft-gmbh/xcodebuild-action@v2
         with:
-          workspace: "Keyboard Cowboy.xcworkspace"
+          workspace: "MarciAI.xcworkspace"
           scheme: "Keyboard-Cowboy"
           destination: platform=macOS
           action: test

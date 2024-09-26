@@ -267,7 +267,7 @@ let prCommandResult = """
 Showing 1 of 1 open pull request in zenangst/KeyboardCowboy
 
 ID    TITLE                          BRANCH                         CREATED AT
-#453  Feature Keyboard Cowboy stats  feature/keyboard-cowboy-stats  about 4 months ago
+#453  Feature MarciAI stats  feature/keyboard-cowboy-stats  about 4 months ago
 """
 
 let prCommandWithJQ = ScriptCommand(
@@ -284,7 +284,7 @@ let prCommandWithJQResult = """
   "headRefName": "feature/keyboard-cowboy-stats",
   "number": 453,
   "reviewDecision": "",
-  "title": "Feature Keyboard Cowboy stats",
+  "title": "Feature MarciAI stats",
   "url": "https://github.com/zenangst/KeyboardCowboy/pull/453"
   }
 ]

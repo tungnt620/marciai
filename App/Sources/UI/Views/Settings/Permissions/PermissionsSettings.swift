@@ -13,7 +13,7 @@ struct PermissionsSettings: View {
             status: .readonly(accessibilityPermission.viewModel),
             icon: "command.circle.fill",
             name: "Accessibility permissions",
-            explanation: "Used to trigger actions when you press a keyboard shortcut.",
+            explanation: "Used to trigger workflows when you press a keyboard shortcut.",
             color: Color(.systemPurple)
           ) {
             AccessibilityPermission.shared.requestPermission()

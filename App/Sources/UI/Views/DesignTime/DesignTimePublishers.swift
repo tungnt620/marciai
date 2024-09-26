@@ -117,8 +117,8 @@ enum DesignTime {
       ContentViewModel(id: UUID().uuidString, groupId: UUID().uuidString, name: "Open Stocks", images: [
         ContentViewModel.ImageModel(id: UUID().uuidString, offset: 0, kind: .icon(.init(bundleIdentifier: "/System/Applications/Stocks.app", path: "/System/Applications/Stocks.app")))
       ], overlayImages: [], trigger: .keyboard("ƒS"), badge: 0, badgeOpacity: 0, isEnabled: true),
-      ContentViewModel(id: UUID().uuidString, groupId: UUID().uuidString, name: "Open Keyboard Cowboy", images: [
-        ContentViewModel.ImageModel(id: UUID().uuidString, offset: 0, kind: .icon(.init(bundleIdentifier: "/Applications/Keyboard Cowboy.app", path: "/Applications/Keyboard Cowboy.app")))
+      ContentViewModel(id: UUID().uuidString, groupId: UUID().uuidString, name: "Open MarciAI", images: [
+        ContentViewModel.ImageModel(id: UUID().uuidString, offset: 0, kind: .icon(.init(bundleIdentifier: "/Applications/MarciAI.app", path: "/Applications/MarciAI.app")))
       ], overlayImages: [], trigger: .keyboard("⌥ƒ0"), badge: 0, badgeOpacity: 0, isEnabled: true),
       ContentViewModel(id: UUID().uuidString, groupId: UUID().uuidString, name: "Open Numbers", images: [
         ContentViewModel.ImageModel(id: UUID().uuidString, offset: 0, kind: .icon(.init(bundleIdentifier: "/System/Applications/Numbers.app", path: "/System/Applications/Numbers.app")))

@@ -27,7 +27,7 @@ struct Release3_23_1: View {
         VStack(spacing: 8) {
           HStack(spacing: 8) {
             VStack(alignment: .leading) {
-              Text("Keyboard Cowboy")
+              Text("MarciAI")
                 .font(Font.system(size: 16, design: .rounded))
               Text("3.23.1")
                 .foregroundStyle(.white)
@@ -112,7 +112,7 @@ struct Release3_23_1: View {
                   Group {
                     Text("SwiftUI components for peak performance — they're now faster than ever!")
                     Text("Perfected the duplicate function, ensuring all ID-based data remains unique and conflict-free.")
-                    Text("Ensured the main window graciously appears when launching Keyboard Cowboy via Spotlight, Raycast, Alfred, or Finder — just as intended by the digital deities.")
+                    Text("Ensured the main window graciously appears when launching MarciAI via Spotlight, Raycast, Alfred, or Finder — just as intended by the digital deities.")
                   }
                     .frame(maxWidth: .infinity, alignment: .leading)
                   Divider()

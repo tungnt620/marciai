@@ -1,6 +1,6 @@
 import XCTest
 import SwiftUI
-@testable import Keyboard_Cowboy
+@testable import MarciAI
 
 final class AssetGeneratorTests: XCTestCase {
   static let sizes: [CGSize] = [

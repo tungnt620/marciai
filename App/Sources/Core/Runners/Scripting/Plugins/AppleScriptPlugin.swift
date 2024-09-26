@@ -107,7 +107,7 @@ final class AppleScriptPlugin: @unchecked Sendable {
     let code = dictionary[NSAppleScript.errorNumber] as? Int ?? 0
     let errorMessage = dictionary[NSAppleScript.errorMessage] as? String ?? "Missing error message"
     let descriptionMessage = dictionary[NSAppleScript.errorBriefMessage] ?? "Missing description"
-    let errorDomain = "com.zenangst.KeyboardCowboy.AppleScriptPlugin"
+    let errorDomain = "com.tung.MarciAI.AppleScriptPlugin"
     let error = NSError(domain: errorDomain, code: code, userInfo: [
       NSLocalizedFailureReasonErrorKey: errorMessage,
       NSLocalizedDescriptionKey: descriptionMessage

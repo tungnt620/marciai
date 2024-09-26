@@ -23,7 +23,7 @@ struct Release3_22_2: View {
             .shadow(radius: 2)
         }
         VStack(alignment: .leading) {
-          Text("Keyboard Cowboy")
+          Text("MarciAI")
             .font(Font.system(size: 16, design: .rounded))
           Text("3.22.2")
             .foregroundStyle(.white)

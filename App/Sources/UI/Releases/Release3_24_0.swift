@@ -25,7 +25,7 @@ struct Release3_24_0: View {
         VStack(spacing: 8) {
           HStack(spacing: 8) {
             VStack(alignment: .leading) {
-              Text("Keyboard Cowboy")
+              Text("MarciAI")
                 .font(Font.system(size: 16, design: .rounded))
               Text("3.24.0")
                 .foregroundStyle(.white)
@@ -88,7 +88,7 @@ struct Release3_24_0: View {
               HStack(alignment: .top, spacing: 12) {
                 RelativeFocusIconView(.right, size: 24)
                 Group {
-                  Text("Introducing relative focus: navigate between windows like a boss! Just point the direction and let Keyboard Cowboy figure it out.")
+                  Text("Introducing relative focus: navigate between windows like a boss! Just point the direction and let MarciAI figure it out.")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
@@ -183,7 +183,7 @@ struct Release3_24_0: View {
                   Group {
                     Text("Window notifications no longer show the small round indicator when no bundles or notifications are present. Clean and clear!")
 
-                    Text("Keyboard Cowboy's main window now remembers both size and position. Talk about a sharp memory!")
+                    Text("MarciAI's main window now remembers both size and position. Talk about a sharp memory!")
 
                     Text("Finding workflows is easier than ever with our improved filtering algorithm. Just type 'command' and watch the magic happen!")
                   }

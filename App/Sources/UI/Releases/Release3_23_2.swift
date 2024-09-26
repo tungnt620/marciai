@@ -22,7 +22,7 @@ struct Release3_23_2: View {
         VStack(spacing: 8) {
           HStack(spacing: 8) {
             VStack(alignment: .leading) {
-              Text("Keyboard Cowboy")
+              Text("MarciAI")
                 .font(Font.system(size: 16, design: .rounded))
               Text("3.23.2")
                 .foregroundStyle(.white)

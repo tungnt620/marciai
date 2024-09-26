@@ -317,7 +317,7 @@ final class UserSpace: @unchecked Sendable {
     _ = try? machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
 
     guard let selectedText = NSPasteboard.general.string(forType: .string) else {
-      throw NSError(domain: "com.zenangst.Keyboard-Cowboy.Userspace", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to read from clipboard."])
+      throw NSError(domain: "com.tung.MarciAI.Userspace", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to read from clipboard."])
     }
 
     if let originalPasteboardContents {

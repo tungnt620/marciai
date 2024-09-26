@@ -21,19 +21,19 @@ struct WorkflowCommandListHeaderView: View {
     HStack {
       ZenLabel("Commands").padding()
       Spacer()
-//      Menu(content: {
-//        ForEach(DetailViewModel.Execution.allCases) { execution in
-//          Button(execution.rawValue, action: {
-//            onAction(.updateExecution(workflowId: workflowId, execution: execution))
-//          })
-//        }
-//      }, label: {
-//        Text(publisher.data.execution.rawValue)
-//          .font(.caption)
-//      })
-//      .menuStyle(.zen(.init(color: .systemGray, padding: .large)))
-//      .fixedSize(horizontal: true, vertical: true)
-//      WorkflowCommandListHeaderAddView(namespace, workflowId: workflowId)
+      Menu(content: {
+        ForEach(DetailViewModel.Execution.allCases) { execution in
+          Button(execution.rawValue, action: {
+            onAction(.updateExecution(workflowId: workflowId, execution: execution))
+          })
+        }
+      }, label: {
+        Text(publisher.data.execution.rawValue)
+          .font(.caption)
+      })
+      .menuStyle(.zen(.init(color: .systemGray, padding: .large)))
+      .fixedSize(horizontal: true, vertical: true)
+      WorkflowCommandListHeaderAddView(namespace, workflowId: workflowId)
     }
     .padding(.leading, 24)
     .padding(.trailing, 16)

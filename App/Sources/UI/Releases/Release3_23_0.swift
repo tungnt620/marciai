@@ -20,7 +20,7 @@ struct Release3_23_0: View {
           HStack(spacing: 8) {
             UIElementIconView(size: size)
             VStack(alignment: .leading) {
-              Text("Keyboard Cowboy")
+              Text("MarciAI")
                 .font(Font.system(size: 16, design: .rounded))
               Text("3.23.0")
                 .foregroundStyle(.white)

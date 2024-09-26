@@ -4,7 +4,7 @@ import Env
 
 // MARK: - Project
 
-let bundleId = "com.zenangst.Keyboard-Cowboy"
+let bundleId = "com.tung.MarciAI"
 
 func xcconfig(_ targetName: String) -> String { "Configurations/\(targetName).xcconfig" }
 func sources(_ folder: String) -> SourceFilesList { "\(folder)/Sources/**" }
@@ -22,12 +22,12 @@ let mainAppTarget = Target.target(
   name: "Keyboard-Cowboy",
   destinations: .macOS,
   product: .app,
-  bundleId: "com.zenangst.Keyboard-Cowboy",
+  bundleId: "com.tung.MarciAI",
   deploymentTargets: .macOS("13.0"),
   infoPlist: .file(path: .relativeToRoot("App/Info.plist")),
   sources: sources("App"),
   resources: resources("App"),
-  entitlements: "App/Entitlements/com.zenangst.Keyboard-Cowboy.entitlements",
+  entitlements: "App/Entitlements/com.tung.MarciAI.entitlements",
   dependencies: [
     .package(product: "AXEssibility"),
     .package(product: "Apps"),
@@ -53,7 +53,7 @@ let mainAppTarget = Target.target(
         "DEVELOPMENT_TEAM": env["TEAM_ID"],
         "ENABLE_HARDENED_RUNTIME": true,
         "MARKETING_VERSION": "3.24.2",
-        "PRODUCT_NAME": "Keyboard Cowboy"
+        "PRODUCT_NAME": "MarciAI"
       ],
       configurations: [
         .debug(name: "Debug", xcconfig: "\(xcconfig("Debug"))"),
@@ -80,7 +80,7 @@ let unitTestTarget = Target.target(
       "CODE_SIGN_STYLE": "-",
       "DEVELOPMENT_TEAM": env["TEAM_ID"],
       "PRODUCT_BUNDLE_IDENTIFIER": "\(bundleId).UnitTests",
-      "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/Keyboard Cowboy.app/Contents/MacOS/Keyboard Cowboy",
+      "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/MarciAI.app/Contents/MacOS/MarciAI",
     ])
 )
 
@@ -102,13 +102,13 @@ let assetGeneratorTarget = Target.target(
       "CODE_SIGN_STYLE": "-",
       "DEVELOPMENT_TEAM": env["TEAM_ID"],
       "PRODUCT_BUNDLE_IDENTIFIER": "\(bundleId).AssetGenerator",
-      "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/Keyboard Cowboy.app/Contents/MacOS/Keyboard Cowboy",
+      "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/MarciAI.app/Contents/MacOS/MarciAI",
     ])
 )
 
 
 let project = Project(
-  name: "Keyboard Cowboy",
+  name: "MarciAI",
   options: Project.Options.options(
     textSettings: .textSettings(indentWidth: 2,
                                 tabWidth: 2)),

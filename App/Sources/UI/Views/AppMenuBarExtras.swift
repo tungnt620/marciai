@@ -12,11 +12,11 @@ struct AppMenuBarExtras: Scene {
   private var applicationName: String {
     switch KeyboardCowboy.env() {
     case .previews:
-      return "Keyboard Cowboy (designTime)"
+      return "MarciAI (designTime)"
     case .production:
-      return "Keyboard Cowboy"
+      return "MarciAI"
     case .development:
-      return "Keyboard Cowboy (dev)"
+      return "MarciAI (dev)"
     }
   }
 

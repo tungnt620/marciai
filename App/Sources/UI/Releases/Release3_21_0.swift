@@ -17,7 +17,7 @@ struct Release3_21_0: PreviewProvider {
         TypingIconView(size: size)
 
         VStack(alignment: .leading) {
-          Text("Keyboard Cowboy")
+          Text("MarciAI")
             .font(Font.system(size: 16, design: .rounded))
           Text("3.21.0")
             .foregroundStyle(.white)

@@ -27,11 +27,11 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.zenangst.Keyboard-Cowboy.Group</string>
-				<string>com.zenangst.Keyboard-Cowboy.Workflows</string>
-				<string>com.zenangst.Keyboard-Cowboy.Command</string>
-				<string>com.zenangst.Keyboard-Cowboy.KeyboardShortcut</string>
-        <string>com.zenangst.Keyboard-Cowboy.ApplicationTrigger</string>
+				<string>com.tung.MarciAI.Group</string>
+				<string>com.tung.MarciAI.Workflows</string>
+				<string>com.tung.MarciAI.Command</string>
+				<string>com.tung.MarciAI.KeyboardShortcut</string>
+				<string>com.tung.MarciAI.ApplicationTrigger</string>
 			</array>
 		</dict>
 	</array>
@@ -48,7 +48,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Needs permission to access Bluetooth peripheral information in order to execute contextual commands.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2019 zenangst. All rights reserved.</string>
+	<string>Copyright © 2024 tung. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
@@ -71,7 +71,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Group</string>
+			<string>com.tung.MarciAI.Group</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -88,7 +88,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Workflows</string>
+			<string>com.tung.MarciAI.Workflows</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -105,30 +105,30 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Command</string>
+			<string>com.tung.MarciAI.Command</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array/>
 			</dict>
 		</dict>
-    <dict>
-      <key>UTTypeConformsTo</key>
-      <array>
-        <string>com.apple.package</string>
-      </array>
-      <key>UTTypeDescription</key>
-      <string>KeyboardShortcut</string>
-      <key>UTTypeIcons</key>
-      <dict/>
-      <key>UTTypeIdentifier</key>
-      <string>com.zenangst.Keyboard-Cowboy.KeyboardShortcut</string>
-      <key>UTTypeTagSpecification</key>
-      <dict>
-        <key>public.filename-extension</key>
-        <array/>
-      </dict>
-    </dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>KeyboardShortcut</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.tung.MarciAI.KeyboardShortcut</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array/>
+			</dict>
+		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
@@ -139,7 +139,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.ApplicationTrigger</string>
+			<string>com.tung.MarciAI.ApplicationTrigger</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -159,7 +159,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Group</string>
+			<string>com.tung.MarciAI.Group</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -173,7 +173,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Workflows</string>
+			<string>com.tung.MarciAI.Workflows</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -187,24 +187,24 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.Command</string>
+			<string>com.tung.MarciAI.Command</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
-    <dict>
-      <key>UTTypeConformsTo</key>
-      <array>
-        <string>com.apple.package</string>
-      </array>
-      <key>UTTypeDescription</key>
-      <string>KeyboardShortcut</string>
-      <key>UTTypeIcons</key>
-      <dict/>
-      <key>UTTypeIdentifier</key>
-      <string>com.zenangst.Keyboard-Cowboy.KeyboardShortcut</string>
-      <key>UTTypeTagSpecification</key>
-      <dict/>
-    </dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>KeyboardShortcut</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.tung.MarciAI.KeyboardShortcut</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
+		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
@@ -215,7 +215,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.zenangst.Keyboard-Cowboy.ApplicationTrigger</string>
+			<string>com.tung.MarciAI.ApplicationTrigger</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>

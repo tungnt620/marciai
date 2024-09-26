@@ -82,7 +82,7 @@ final class KeyboardCowboyEngine {
       let newMachPortController = try MachPortEventController(
         .privateState,
         eventsOfInterest: keyboardEvents,
-        signature: "com.zenangst.Keyboard-Cowboy",
+        signature: "com.tung.MarciAI",
         autoStartMode: .commonModes,
         onFlagsChanged: { [machPortCoordinator] in machPortCoordinator.receiveFlagsChanged($0) },
         onEventChange: { [machPortCoordinator] in machPortCoordinator.receiveEvent($0) })

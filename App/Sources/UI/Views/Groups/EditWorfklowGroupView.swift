@@ -46,49 +46,49 @@ struct EditWorfklowGroupView: View {
       Divider()
 
       HStack(spacing: 16) {
-        VStack(alignment: .leading, spacing: 0) {
-          HStack {
-            UserModeIconView(size: 24)
-            ZenLabel("User Modes")
-          }
-          .padding(8)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .background(Color(.windowBackgroundColor))
-
-          Menu("Add User Mode") {
-            ForEach(publisher.data.userModes) { userMode in
-              Button(action: {
-                guard !group.userModes.contains(userMode) else { return }
-                group.userModes.append(userMode)
-              }, label: {
-                Text(userMode.name)
-              })
-            }
-          }
-          .padding([.leading, .trailing, .bottom], 8)
-          .menuStyle(.regular)
-          
-          ScrollView {
-            ForEach(group.userModes) { userMode in
-              Divider()
-              HStack {
-                Text(userMode.name)
-                Spacer()
-                Button(action: {
-                  group.userModes.removeAll(where: { $0.id == userMode.id })
-                }, label: {
-                  Image(systemName: "trash")
-                })
-                .buttonStyle(.calm(color: .systemRed, padding: .medium))
-
-              }
-              .padding(.horizontal)
-            }
-          }
-        }
-        .background(Color(.windowBackgroundColor))
-        .roundedContainer(padding: 0, margin: 0)
-        .padding([.top, .leading, .bottom], 16)
+//        VStack(alignment: .leading, spacing: 0) {
+//          HStack {
+//            UserModeIconView(size: 24)
+//            ZenLabel("User Modes")
+//          }
+//          .padding(8)
+//          .frame(maxWidth: .infinity, alignment: .leading)
+//          .background(Color(.windowBackgroundColor))
+//
+//          Menu("Add User Mode") {
+//            ForEach(publisher.data.userModes) { userMode in
+//              Button(action: {
+//                guard !group.userModes.contains(userMode) else { return }
+//                group.userModes.append(userMode)
+//              }, label: {
+//                Text(userMode.name)
+//              })
+//            }
+//          }
+//          .padding([.leading, .trailing, .bottom], 8)
+//          .menuStyle(.regular)
+//          
+//          ScrollView {
+//            ForEach(group.userModes) { userMode in
+//              Divider()
+//              HStack {
+//                Text(userMode.name)
+//                Spacer()
+//                Button(action: {
+//                  group.userModes.removeAll(where: { $0.id == userMode.id })
+//                }, label: {
+//                  Image(systemName: "trash")
+//                })
+//                .buttonStyle(.calm(color: .systemRed, padding: .medium))
+//
+//              }
+//              .padding(.horizontal)
+//            }
+//          }
+//        }
+//        .background(Color(.windowBackgroundColor))
+//        .roundedContainer(padding: 0, margin: 0)
+//        .padding([.top, .leading, .bottom], 16)
 
         VStack(alignment: .leading, spacing: 0) {
           RuleHeaderView(applicationStore: applicationStore, group: $group)
@@ -112,7 +112,7 @@ struct EditWorfklowGroupView: View {
           .padding()
         }
         .roundedContainer(padding: 0, margin: 0)
-        .padding([.top, .trailing, .bottom], 16)
+        .padding(32)
       }
 
       HStack {

@@ -52,7 +52,7 @@ final class UIElementCaptureStore: ObservableObject {
           let newMachPortController = try? MachPortEventController(
             .privateState,
             eventsOfInterest: keyboardEvents | leftMouseEvents,
-            signature: "com.zenangst.Keyboard-Cowboy",
+            signature: "com.tung.MarciAI",
             autoStartMode: .commonModes,
             onFlagsChanged: { [weak self] machPortEvent in
               self?.flags = machPortEvent.event.flags

@@ -94,11 +94,13 @@ struct NewCommandView: View {
     }
     .frame(minWidth: 710, minHeight: 500)
   }
+  
+  let subsetOfKinds: [Kind] = [.chatGpt, .application, .text, .url, .shortcut, .script, .system, .mouse]
 
   private func sidebar() -> some View {
     ScrollView(.vertical) {
       VStack {
-        ForEach(Array(zip(Kind.allCases.indices, Kind.allCases)), id: \.1) { offset, kind in
+        ForEach(Array(zip(subsetOfKinds.indices, subsetOfKinds)), id: \.1) { offset, kind in
           NewCommandButtonView(content: {
             HStack {
               NewCommandImageView(kind: kind)

@@ -10,8 +10,8 @@ extension Notification.Name {
 }
 
 enum AppNotification: String {
-  case newWorkflow = "com.zenangst.KeyboardCowboy.newWorkflow"
-  case openKeyboardCowboy = "com.zenangst.KeyboardCowboy.openApp"
+  case newWorkflow = "com.tung.MarciAI.newWorkflow"
+  case openKeyboardCowboy = "com.tung.MarciAI.openApp"
 
   var notificationName: Notification.Name { Notification.Name(rawValue) }
 }

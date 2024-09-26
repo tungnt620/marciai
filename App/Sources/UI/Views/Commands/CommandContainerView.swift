@@ -41,9 +41,9 @@ struct CommandContainerView<IconContent, Content, SubContent>: View where IconCo
 
   var body: some View {
     VStack(alignment: .leading, spacing: 4) {
-//      CommandContainerHeaderView($metaData, placeholder: placeholder, onAction: onAction)
-//      ZenDivider()
-//        .padding(.bottom, 4)
+      CommandContainerHeaderView($metaData, placeholder: placeholder, onAction: onAction)
+      ZenDivider()
+        .padding(.bottom, 4)
       CommandContainerContentView($metaData, icon: icon, content: content).padding(.top, 16)
       CommandContainerSubContentView($metaData, content: subContent, onAction: onAction)
     }

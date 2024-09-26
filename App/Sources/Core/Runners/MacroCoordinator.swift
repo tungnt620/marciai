@@ -29,7 +29,7 @@ final class MacroCoordinator {
   private var currentBundleIdentifier: String = Bundle.main.bundleIdentifier!
   private var macros = [MacroKey: [MacroKind]]()
 
-  private let bezelId = "com.apple.zenangst.Keyboard-Cowboy.macros"
+  private let bezelId = "com.apple.tung.MarciAI.macros"
 
   @MainActor
   private let userSpace: UserSpace

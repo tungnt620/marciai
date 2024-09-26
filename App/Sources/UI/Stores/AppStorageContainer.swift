@@ -4,7 +4,7 @@ import SwiftUI
 @MainActor
 final class AppStorageContainer: @unchecked Sendable {
   #if DEBUG
-  static let store = UserDefaults(suiteName: "com.zenangst.Keyboard-Cowboy.debug")
+  static let store = UserDefaults(suiteName: "com.tung.MarciAI.debug")
   #else
   static let store = UserDefaults.standard
   #endif

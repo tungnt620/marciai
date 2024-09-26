@@ -8,7 +8,7 @@ struct PermissionsScene: Scene {
       PermissionsView(onAction: onAction)
         .toolbar(content: {
           Spacer()
-          Text("Keyboard Cowboy: Permissions")
+          Text("MarciAI: Permissions")
           Spacer()
         })
         .frame(width: 640, height: 560)

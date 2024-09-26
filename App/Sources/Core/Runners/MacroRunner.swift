@@ -3,7 +3,7 @@ import MachPort
 
 final class MacroRunner {
   private let coordinator: MacroCoordinator
-  private let bezelId = "com.zenangst.Keyboard-Cowboy.MacroRunner"
+  private let bezelId = "com.tung.MarciAI.MacroRunner"
 
   init(coordinator: MacroCoordinator) {
     self.coordinator = coordinator
