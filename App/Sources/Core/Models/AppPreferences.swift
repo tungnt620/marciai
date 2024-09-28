@@ -5,7 +5,7 @@ private let rootFolder = URL(fileURLWithPath: #file).pathComponents
   .joined(separator: "/")
   .dropFirst()
 
-// TODO: hard code configuration for ReWrite application
+// TODO: hard code configuration for MarciAI application
 
 struct AppPreferences {
   var hideAppOnLaunch: Bool = true

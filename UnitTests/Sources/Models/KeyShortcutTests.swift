@@ -1,4 +1,4 @@
-@testable import Keyboard_Cowboy
+@testable import MarciAI
 import XCTest
 
 final class KeyShortcutTests: XCTestCase {

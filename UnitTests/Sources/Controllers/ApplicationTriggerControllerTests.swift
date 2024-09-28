@@ -1,4 +1,4 @@
-@testable import Keyboard_Cowboy
+@testable import MarciAI
 import XCTest
 import Combine
 import Cocoa
@@ -113,7 +113,7 @@ private final class WorkflowRunner: WorkflowRunning {
     self.serialRunHandler = serial
   }
 
-  func runCommands(in workflow: Keyboard_Cowboy.Workflow) {
+  func runCommands(in workflow: MarciAI.Workflow) {
     switch workflow.execution {
     case .concurrent:
       concurrentRunHandler(workflow.commands)
@@ -122,7 +122,7 @@ private final class WorkflowRunner: WorkflowRunning {
     }
   }
 
-  func run(_ workflow: Keyboard_Cowboy.Workflow, for shortcut: Keyboard_Cowboy.KeyShortcut, executionOverride: Keyboard_Cowboy.Workflow.Execution?, machPortEvent: MachPort.MachPortEvent, repeatingEvent: Bool) {
+  func run(_ workflow: MarciAI.Workflow, for shortcut: MarciAI.KeyShortcut, executionOverride: MarciAI.Workflow.Execution?, machPortEvent: MachPort.MachPortEvent, repeatingEvent: Bool) {
     switch executionOverride ?? workflow.execution {
     case .concurrent:
       concurrentRunHandler(workflow.commands)

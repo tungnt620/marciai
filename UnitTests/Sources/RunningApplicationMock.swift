@@ -1,5 +1,5 @@
 import Cocoa
-@testable import Keyboard_Cowboy
+@testable import MarciAI
 import Foundation
 
 class RunningApplicationMock: RunningApplication {

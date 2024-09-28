@@ -31,11 +31,48 @@ final class ChatGptCommandRunner {
     await MainActor.run {
       let pasteboard = NSPasteboard.general
       // Get the string from the pasteboard if available
-      let selectexText =  pasteboard.string(forType: .string)
+      var selectexText = ""
+      // Retrieve Plain Text
+          if let plainText = pasteboard.string(forType: .string) {
+              print("Plain Text: \(plainText)")
+            if (!plainText.isEmpty) {
+              selectexText = plainText
+            }
+          } else {
+              print("No plain text found")
+          }
+
+          // Retrieve Rich Text (RTF)
+          if let rtfData = pasteboard.data(forType: .rtf),
+             let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil) {
+              print("Rich Text: \(rtfString.string)")
+            if (!rtfString.string.isEmpty) {
+              selectexText = rtfString.string
+            }
+          } else {
+              print("No rich text found")
+          }
+
+      // If RTF is not available, try to get the content as HTML
+          if let htmlData = pasteboard.data(forType: .html),
+             let htmlString = String(data: htmlData, encoding: .utf8),
+             let data = htmlString.data(using: .utf8),
+             let attributedString = try? NSAttributedString(data: data,
+                                                            
+                                                            options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                      .characterEncoding: String.Encoding.utf8.rawValue],                                                            documentAttributes: nil) {
+            print("HTML content retrieved: \(attributedString.string)")
+            if (!selectexText.isEmpty && !attributedString.string.isEmpty) {
+              selectexText = attributedString.string
+            }
+//              return attributedString
+          } else {
+            print("No rich text found")
+          }
+              
+      print("selected text \(selectexText)")
       
-      print(selectexText ?? "")
-      
-      showChatGptResultWindow(input: input, selectexText: selectexText ?? "")
+      showChatGptResultWindow(input: input, selectexText: selectexText)
     }
   }
   
@@ -196,19 +233,18 @@ class MarkdownStreamModel: ObservableObject {
   private var throttleCancellable: AnyCancellable?
   
   // Publisher to debounce the updates
-  private let throttleDelay = 0.5
+  private let throttleDelay = 1
   
   func streamMarkdown(_ input: String, _ selectedText: String) {
     let apiKey = "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" // Replace with your actual API key
     let client = ChatGPTClient(apiKey: apiKey)
     
     let messages: [[String: Any]] = [
-      ["role": "system", "content": "You are a helpful assistant."],
+      ["role": "system", "content": "You are helpfull assistant that responds Markdown, you usually split your output into paragraphs."],
       ["role": "user", "content": "\(input)\n\nInput: \(selectedText)"]
     ]
     
     client.startChat(with: messages, onMessageReceived: { chunk, stopChat in
-      // Make sure to update the UI on the main thread
       DispatchQueue.main.async {
         self.markdownContent.append(chunk)
       }
@@ -224,6 +260,7 @@ class MarkdownStreamModel: ObservableObject {
     throttleCancellable = Just(markdownContent)
       .delay(for: .seconds(throttleDelay), scheduler: RunLoop.main)
       .sink { [weak self] newValue in
+        print("new value: \(newValue)")
         self?.objectWillChange.send()  // Send update notification
       }
   }

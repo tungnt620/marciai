@@ -72,7 +72,7 @@ private struct _MenubarIcon: View {
     } else if launchArguments.isEnabled(.runningUnitTests) {
       Image(systemName: "testtube.2")
     } else if KeyboardCowboy.env() == .production {
-      Image(systemName: "command")
+      Image(systemName: "wand.and.stars")
     } else {
       Image(systemName: "hammer.circle")
     }

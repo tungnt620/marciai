@@ -17,7 +17,7 @@ struct PermissionsView: View {
         KeyboardCowboyAsset.applicationIcon.swiftUIImage
           .resizable()
           .frame(width: 84, height: 84)
-        Text("Accessibility permissions are required for ReWrite application to function properly.")
+        Text("Accessibility permissions are required for MarciAI application to function properly.")
           .font(.title2)
       }
       .padding([.leading, .top, .trailing], 16)
@@ -31,8 +31,8 @@ struct PermissionsView: View {
             Text("Rest assured that we do not use this information for any purpose other than to serve you.")
           }
           .font(.headline)
-          Text("ReWrite comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
-          Text("ReWrite is designed to be secure and private.")
+          Text("MarciAI comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
+          Text("MarciAI is designed to be secure and private.")
             .font(.headline)
         }
         .padding(.vertical, 32)

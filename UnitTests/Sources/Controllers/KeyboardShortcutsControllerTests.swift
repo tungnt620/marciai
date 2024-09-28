@@ -1,5 +1,5 @@
 import XCTest
-@testable import Keyboard_Cowboy
+@testable import MarciAI
 
 final class KeyboardShortcutsControllerTests: XCTestCase {
   func testLookupInLargeCollection() {
