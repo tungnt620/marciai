@@ -23,20 +23,58 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Group type</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.tung.MarciAI.Group</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Workflows type</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
 				<string>com.tung.MarciAI.Workflows</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Command type</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
 				<string>com.tung.MarciAI.Command</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Keyboard Shortcut type</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
 				<string>com.tung.MarciAI.KeyboardShortcut</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Application Trigger type</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
 				<string>com.tung.MarciAI.ApplicationTrigger</string>
 			</array>
 		</dict>
 	</array>
 	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.utilities</string>
+	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
@@ -58,7 +96,7 @@
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/zenangst/KeyboardCowboy/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>ZxEpbxbd8TIwNev9bkzaLrHAaQUK/x0wBTHb4anScsc=</string>
+	<string>02+8ZewguVQe/hBz2VPu81v2wP5iOs9wx19JjD55jVQ=</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

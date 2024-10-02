@@ -123,31 +123,6 @@ func getFocusedText() -> (String?, Int?) {
   return (nil, nil)
 }
 
-
-func getSelectedText2() -> String {
-  // Get the system-wide accessibility element (the current application)
-  let systemWideElement = AXUIElementCreateSystemWide()
-  
-  // Get the element that has the keyboard focus (presumably where the user has selected text)
-  var focusedElement: CFTypeRef?
-  let result = AXUIElementCopyAttributeValue(systemWideElement, kAXFocusedUIElementAttribute as CFString, &focusedElement)
-  
-  guard result == .success, let element = focusedElement else {
-    return ""
-  }
-  
-  // Retrieve the selected text from the focused element
-  var selectedText: CFTypeRef?
-  let textResult = AXUIElementCopyAttributeValue(element as! AXUIElement, kAXSelectedTextAttribute as CFString, &selectedText)
-  
-  
-  if textResult == .success, let text = selectedText as? String {
-    return text
-  }
-  
-  return ""
-}
-
 func getSelectedText() -> NSAttributedString? {
   // Get the system-wide accessibility element (the current application)
   let systemWideElement = AXUIElementCreateSystemWide()

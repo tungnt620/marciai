@@ -48,6 +48,19 @@ final class ApplicationStore: ObservableObject, @unchecked Sendable {
     await Benchmark.shared.start("ApplicationController.load")
     let decoder = JSONDecoder()
     let additionalPaths = await AppStorageContainer.shared.additionalApplicationPaths
+    
+    createDirectoryIfNotExist(path: AppCache
+      .rootDirectory
+      .appendingPathComponent(Self.domain)
+      .path()
+    )
+    createFileIfNotExist(atPath: AppCache
+      .rootDirectory
+      .appendingPathComponent(Self.domain)
+      .appending(path: "applications.json")
+      .path()
+    )
+    
     if let newApplications: [Application] = try? AppCache.load(Self.domain, name: "applications.json", decoder: decoder) {
       do {
         var applicationDictionary = [String: Application]()
@@ -119,5 +132,38 @@ final class ApplicationStore: ObservableObject, @unchecked Sendable {
     } catch let error {
       print(error)
     }
+  }
+  
+  private func createDirectoryIfNotExist(path: String) {
+      let fileManager = FileManager.default
+      var isDir: ObjCBool = false
+      
+      if !fileManager.fileExists(atPath: path, isDirectory: &isDir) {
+          do {
+              try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+              print("Directory created at path: \(path)")
+          } catch {
+              print("Error creating directory: \(error.localizedDescription)")
+          }
+      } else if isDir.boolValue {
+          print("Directory already exists at path: \(path)")
+      } else {
+          print("A file exists at path: \(path), unable to create directory.")
+      }
+  }
+  
+  private func createFileIfNotExist(atPath path: String, contents: Data? = nil) {
+      let fileManager = FileManager.default
+      
+      if !fileManager.fileExists(atPath: path) {
+          let created = fileManager.createFile(atPath: path, contents: contents, attributes: nil)
+          if created {
+              print("File created at path: \(path)")
+          } else {
+              print("Failed to create file at path: \(path)")
+          }
+      } else {
+          print("File already exists at path: \(path)")
+      }
   }
 }
