@@ -94,7 +94,7 @@
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://raw.githubusercontent.com/zenangst/KeyboardCowboy/main/appcast.xml</string>
+	<string>https://pub-4ebdade43093498bb20fb188b0e2f2d9.r2.dev/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>02+8ZewguVQe/hBz2VPu81v2wP5iOs9wx19JjD55jVQ=</string>
 	<key>UTExportedTypeDeclarations</key>

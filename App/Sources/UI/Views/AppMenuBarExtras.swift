@@ -35,7 +35,7 @@ struct AppMenuBarExtras: Scene {
       Button { onAction(.openMainWindow) } label: { Text("Open \(applicationName)") }
       AppMenu()
       Divider()
-      HelpMenu()
+//      HelpMenu()
       Divider()
       Text("Version: \(KeyboardCowboy.marketingVersion) (\(KeyboardCowboy.buildNumber))")
 #if DEBUG
@@ -72,7 +72,7 @@ private struct _MenubarIcon: View {
     } else if launchArguments.isEnabled(.runningUnitTests) {
       Image(systemName: "testtube.2")
     } else if KeyboardCowboy.env() == .production {
-      Image(systemName: "wand.and.stars")
+      Image(systemName: "m.circle.fill")
     } else {
       Image(systemName: "hammer.circle")
     }

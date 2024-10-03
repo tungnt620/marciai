@@ -11,7 +11,7 @@ struct FileMenu: View {
   var onNewCommand: (DetailViewModel.Info.ID) -> Void
 
   var body: some View {
-    Button(action: onNewConfiguration, label: { Text("New Configuration") })
+//    Button(action: onNewConfiguration, label: { Text("New Configuration") })
     Button(action: onNewGroup, label: { Text("New Group") })
       .keyboardShortcut("n", modifiers: [.control, .option, .command])
     Button(action: onNewWorkflow, label: { Text("New Workflow") })

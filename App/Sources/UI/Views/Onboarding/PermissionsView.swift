@@ -31,9 +31,9 @@ struct PermissionsView: View {
             Text("Rest assured that we do not use this information for any purpose other than to serve you.")
           }
           .font(.headline)
-          Text("MarciAI comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
-          Text("MarciAI is designed to be secure and private.")
-            .font(.headline)
+//          Text("MarciAI comes with built-in security measures to protect your sensitive information. Password fields and other secure inputs cannot be monitored by our application.")
+//          Text("MarciAI is designed to be secure and private.")
+//            .font(.headline)
         }
         .padding(.vertical, 32)
         .padding(.horizontal, 48)

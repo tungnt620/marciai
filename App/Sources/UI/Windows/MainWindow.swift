@@ -59,9 +59,9 @@ struct MainWindow: Scene {
         })
       }
 
-      CommandGroup(replacing: .help) {
-        HelpMenu()
-      }
+//      CommandGroup(replacing: .help) {
+//        HelpMenu()
+//      }
     }
   }
 }
