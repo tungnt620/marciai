@@ -86,7 +86,7 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Needs permission to access Bluetooth peripheral information in order to execute contextual commands.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2024 tung. All rights reserved.</string>
+	<string>Copyright © 2024 Tung. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>

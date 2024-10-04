@@ -9,9 +9,13 @@ import Combine
 
 final class ChatGptCommandRunner {
   private let keyboardCommandRunner: KeyboardCommandRunner
+  private let apiLimiter: ApiUsageLimiter
+  @AppStorage("Setting.chatGptApiKey") var chatGptApiKey: String = ""
+  private let myApiKey = "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"
   
   internal init(_ keyboardCommandRunner: KeyboardCommandRunner) {
     self.keyboardCommandRunner = keyboardCommandRunner
+    self.apiLimiter = ApiUsageLimiter(limitPerDuration: 50, durationInDays: 7) // Limit to 100 API calls per 7 days
   }
   
   func run(_ input: String) async throws {
@@ -72,7 +76,15 @@ final class ChatGptCommandRunner {
               
       print("selected text \(selectexText)")
       
-      showChatGptResultWindow(input: input, selectexText: selectexText)
+      if (chatGptApiKey == myApiKey) {
+        if apiLimiter.canMakeApiCall() {
+          showChatGptResultWindow(input: input, selectexText: selectexText)
+        } else {
+          showLimitAlertWindow()
+        }
+      } else {
+        showChatGptResultWindow(input: input, selectexText: selectexText)
+      }
     }
   }
   
@@ -83,7 +95,10 @@ final class ChatGptCommandRunner {
     try await Task.sleep(for: .milliseconds(10))
     try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyDown, flags: .maskCommand)
     try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
-    try await Task.sleep(for: .milliseconds(30))
+    try await Task.sleep(for: .milliseconds(10))
+    try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyDown, flags: .maskCommand)
+    try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
+    try await Task.sleep(for: .milliseconds(50))
   }
 }
 
@@ -198,6 +213,8 @@ func runAppleScript(text: String) {
 
 @MainActor
 class MarkdownStreamModel: ObservableObject {
+  @AppStorage("Setting.chatGptApiKey") var chatGptApiKey: String = ""
+
   @Published var markdownContent: String = "" {
     didSet {
       triggerThrottledUpdate()
@@ -211,8 +228,8 @@ class MarkdownStreamModel: ObservableObject {
   private let throttleDelay = 1
   
   func streamMarkdown(_ input: String, _ selectedText: String) {
-    let apiKey = "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" // Replace with your actual API key
-    let client = ChatGPTClient(apiKey: apiKey)
+    
+    let client = ChatGPTClient(apiKey: chatGptApiKey)
     
     let messages: [[String: Any]] = [
       ["role": "system", "content": "You are helpfull assistant that responds Markdown, you usually split your output into paragraphs."],
@@ -267,7 +284,7 @@ struct PopupView: View {
         if showCopiedText {
           Text("Copied!")
             .font(.caption)
-            .foregroundColor(.green)
+//            .foregroundColor(.green)
             .transition(.opacity)  // Fade in/out
             .padding(.bottom, 8)
         }
@@ -389,6 +406,7 @@ func showChatGptResultWindow(input: String, selectexText: String) {
     popupWindow.identifier = NSUserInterfaceItemIdentifier(rawValue: "chatGptResultWindow")
     popupWindow.contentView = popupView.view
     popupWindow.canHide = true
+    popupWindow.title = input
     popupWindow.isReleasedWhenClosed = false // Keep the window alive even if closed
     popupWindow.level = .floating // Ensure it stays on top of other windows
     popupWindow.minSize = NSSize(width: windowWidth, height: windowHeight)  // Minimum size for the window
@@ -397,3 +415,71 @@ func showChatGptResultWindow(input: String, selectexText: String) {
     popupWindow.makeKeyAndOrderFront(nil)
   }
 }
+
+
+struct ReachApiLimitView: View {
+  
+  var body: some View {
+    ZStack(alignment: .bottomTrailing) {  // Use ZStack to overlay the button in the bottom-right
+      Text("showLimitAlertWindow")
+    }
+  }
+}
+  
+
+@MainActor
+func showLimitAlertWindow() {
+  
+  // Create the SwiftUI view that provides the popup content
+  let popupView = NSHostingController(rootView: ReachApiLimitView())
+  
+  // Check if the window is already created
+  if let existingWindow = NSApplication.shared.windows.first(where: { $0.identifier == NSUserInterfaceItemIdentifier(rawValue: "showLimitAlertWindow") }) {
+    existingWindow.contentView = popupView.view
+    existingWindow.makeKeyAndOrderFront(nil) // Bring existing window to the front
+    return
+  }
+  
+  // Get the main screen size
+  if let screen = NSScreen.main {
+    let screenWidth = screen.frame.width
+    
+    // Define the window size
+    let windowWidth: CGFloat = 400
+    let windowHeight: CGFloat = 400
+    
+    // Define the bottom margin
+    let bottomMargin: CGFloat = 100  // Space from the bottom of the screen
+    
+    // Calculate the X and Y position for the bottom center
+    let windowX = (screenWidth - windowWidth) / 2
+    
+    // Create a new window and set the content
+    let popupWindow = ChatGptResultWindow(
+      contentRect: NSRect(x: windowX, y: bottomMargin, width: windowWidth, height: windowHeight),
+      styleMask: [.titled, .closable],
+      backing: .buffered, defer: false
+    )
+    
+    // Hide Zoom and Minimize buttons
+    if let zoomButton = popupWindow.standardWindowButton(.zoomButton) {
+      zoomButton.isHidden = true
+    }
+    
+    if let minimizeButton = popupWindow.standardWindowButton(.miniaturizeButton) {
+      minimizeButton.isHidden = true
+    }
+    
+    popupWindow.identifier = NSUserInterfaceItemIdentifier(rawValue: "showLimitAlertWindow")
+    popupWindow.contentView = popupView.view
+    popupWindow.canHide = true
+    popupWindow.title = "API has reached its limit"
+    popupWindow.isReleasedWhenClosed = false // Keep the window alive even if closed
+    popupWindow.level = .floating // Ensure it stays on top of other windows
+    popupWindow.minSize = NSSize(width: windowWidth, height: windowHeight)  // Minimum size for the window
+    popupWindow.maxSize = NSSize(width: windowWidth, height: windowHeight)  // Maximum size for the window
+    
+    popupWindow.makeKeyAndOrderFront(nil)
+  }
+}
+

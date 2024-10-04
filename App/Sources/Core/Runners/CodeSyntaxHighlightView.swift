@@ -4,7 +4,8 @@ import SwiftUI
 
 struct CodeSyntaxHighlightView: View {
   @Environment(\.colorScheme) private var colorScheme
-  
+  @State private var showCopiedText = false  // State to control "Copied!" message visibility
+
   let markdownContent: String
   
   var body: some View {
@@ -24,9 +25,22 @@ struct CodeSyntaxHighlightView: View {
           .foregroundColor(Color(theme.plainTextColor))
         Spacer()
         
-        Image(systemName: "clipboard")
+        
+        // "Copied!" helper text
+        if showCopiedText {
+          Text("Copied!")
+            .font(.caption)
+            .transition(.opacity)  // Fade in/out
+        }
+        
+        Image(systemName: "doc.on.doc")  // Clipboard icon
+          .resizable()
+          .scaledToFit()
+          .frame(width: 30, height: 30)
+          .padding(5)
           .onTapGesture {
             copyToClipboard(configuration.content)
+            showCopiedFeedback()  // Show "Copied!" message
           }
       }
       .padding(.horizontal)
@@ -47,9 +61,23 @@ struct CodeSyntaxHighlightView: View {
           .padding()
       }
     }
-    //    .background(Color())
+    .background(Color(theme.backgroundColor))
     .clipShape(RoundedRectangle(cornerRadius: 8))
     .markdownMargin(top: .zero, bottom: .em(0.5))
+  }
+  
+  // Function to show "Copied!" helper text for a short duration
+  func showCopiedFeedback() {
+    withAnimation {
+      showCopiedText = true  // Show the "Copied!" text with animation
+    }
+    
+    // Hide the message after 2 seconds
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      withAnimation {
+        showCopiedText = false
+      }
+    }
   }
   
   private var theme: Splash.Theme {
@@ -72,6 +100,15 @@ struct CodeSyntaxHighlightView: View {
 
 struct CodeSyntaxHighlightView_Previews: PreviewProvider {
   static var previews: some View {
-    CodeSyntaxHighlightView(markdownContent: "132132")
+    CodeSyntaxHighlightView(markdownContent: """
+  ```swift
+          private func copyToClipboard(_ string: String) {
+            print(string)
+            let pasteboard = NSPasteboard.general
+            pasteboard.clearContents()
+            pasteboard.setString(string, forType: .string)
+          }
+  ```
+  """)
   }
 }

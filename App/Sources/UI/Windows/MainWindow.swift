@@ -24,10 +24,10 @@ struct MainWindow: Scene {
     .windowResizability(.contentSize)
     .windowStyle(.hiddenTitleBar)
     .commands {
-      CommandGroup(after: .appSettings) {
-        AppMenu()
-        Button { openWindow(id: KeyboardCowboy.releaseNotesWindowIdentifier) } label: { Text("What's new?") }
-      }
+//      CommandGroup(after: .appSettings) {
+//        AppMenu()
+//        Button { openWindow(id: KeyboardCowboy.releaseNotesWindowIdentifier) } label: { Text("What's new?") }
+//      }
       CommandGroup(replacing: .newItem) {
         FileMenu(
           onNewConfiguration: {

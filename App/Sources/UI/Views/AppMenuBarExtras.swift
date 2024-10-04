@@ -29,10 +29,28 @@ struct AppMenuBarExtras: Scene {
     self.contentStore = contentStore
     self.onAction = onAction
   }
-
+  
   var body: some Scene {
     MenuBarExtra(content: {
       Button { onAction(.openMainWindow) } label: { Text("Open \(applicationName)") }
+//      Divider()
+
+//      if #available(macOS 14.0, *) {
+//          SettingsLink {
+//              Text("Settings...")
+//          }
+//          .keyboardShortcut(",", modifiers: [.command])
+//      }
+//      else {
+//          Button(action: {
+//            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+//          }, label: {
+//            Text("Settings...")
+//          })
+//          .keyboardShortcut(",", modifiers: [.command])
+//      }
+//      Divider()
+
       AppMenu()
       Divider()
 //      HelpMenu()
