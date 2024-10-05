@@ -43,9 +43,14 @@ final class Storage: @unchecked Sendable {
 
   func load() async throws -> [KeyboardCowboyConfiguration] {
     await Benchmark.shared.start("Storage.load")
-
+    
+    guard let defaultConfigurationUrl = Bundle.main.url(forResource: "marciai", withExtension: "json") else {
+      await Benchmark.shared.stop("Storage.load")
+      throw StorageError.unableToFindFile
+    }
+    
     if !fileManager.fileExists(atPath: configuration.url.path) {
-      if !fileManager.createFile(atPath: configuration.url.path, contents: nil) {
+      if !fileManager.createFile(atPath: configuration.url.path, contents: try Data(contentsOf: defaultConfigurationUrl)) {
         await Benchmark.shared.stop("Storage.load")
         throw StorageError.unableToFindFile
       }

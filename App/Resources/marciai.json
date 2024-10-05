@@ -1,0 +1,182 @@
+[
+  {
+    "userModes" : [
+
+    ],
+    "id" : "32B182D7-EBD7-4B97-A8AE-B52605FE61F9",
+    "name" : "Default configuration",
+    "groups" : [
+      {
+        "userModes" : [
+
+        ],
+        "color" : "#F2A23C",
+        "symbol" : "flame",
+        "id" : "33DEFB82-6182-4543-9340-07342EF8EDAF",
+        "name" : "Code",
+        "workflows" : [
+          {
+            "name" : "Explain code",
+            "id" : "722B8D31-C0E6-4348-8E08-DC63BC3A7FA8",
+            "execution" : "concurrent",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "name" : "ChatGptCommand",
+                    "id" : "87671E24-A294-4EC2-BE7F-6B909A3D210D",
+                    "enabled" : true
+                  },
+                  "prompt" : "Explain this code\n"
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "lhs" : true,
+                    "key" : "e",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "id" : "9A01CD78-CEE4-4380-8ED8-819BE2BE3C13"
+                  }
+                ],
+                "passthrough" : false
+              }
+            }
+          },
+          {
+            "execution" : "concurrent",
+            "name" : "Fix grammar",
+            "id" : "626C7B30-EC1B-4BF3-8DFF-9961EC55A6A2",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Fix grammar, no explain, only output\n",
+                  "meta" : {
+                    "name" : "ChatGptCommand",
+                    "enabled" : true,
+                    "id" : "58016E8C-0DD6-4031-884C-751C747E1DB2"
+                  }
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "id" : "95AD5434-DE79-4F4A-A0FB-430A4B152D3E",
+                    "key" : "g",
+                    "lhs" : true
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "id" : "91394027-0320-4BF8-966D-751A26EBC220",
+                    "enabled" : true,
+                    "name" : "ChatGptCommand"
+                  },
+                  "prompt" : "Convert this code to java, only convert selected code\n"
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "key" : "j",
+                    "lhs" : true,
+                    "id" : "6AD890A5-1979-4395-AEE9-374CA308B0A9",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            },
+            "execution" : "concurrent",
+            "name" : "Convert to java code",
+            "id" : "05788C2E-D8F3-4D27-8E72-1D487DD108B1"
+          },
+          {
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "C942DCCB-ECB8-420F-95D9-E338959E62F5",
+                    "name" : "ChatGptCommand"
+                  },
+                  "prompt" : "Name this function better"
+                }
+              }
+            ],
+            "id" : "BF86BFC1-18B9-4422-A804-CA97F4E33730",
+            "execution" : "concurrent",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "key" : "c",
+                    "id" : "711C6A48-811C-4158-8BF9-BA6478200A80",
+                    "lhs" : true
+                  }
+                ],
+                "passthrough" : false
+              }
+            },
+            "name" : "Name it better"
+          },
+          {
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Refactor bellow code to make it more understandable, change name of variable, function if need, add some comment if need\n",
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "453141F0-8A3D-4985-833F-303C33DD4B26",
+                    "name" : "ChatGptCommand"
+                  }
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "id" : "61FE4CAA-FD88-4146-96AC-0687913B69B0",
+                    "key" : "r",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "lhs" : true
+                  }
+                ]
+              }
+            },
+            "name" : "Code refactor",
+            "execution" : "concurrent",
+            "id" : "F3EDF07A-953D-444B-BC1B-17CE9792660F"
+          }
+        ]
+      }
+    ]
+  }
+]

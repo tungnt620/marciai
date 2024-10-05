@@ -22,7 +22,7 @@ struct AppPreferences {
     AppPreferences(
       hideAppOnLaunch: true,
       machportIsEnabled: true,
-      storageConfiguration: StorageConfiguration(path: "~/", filename: ".keyboard-cowboy.json"))
+      storageConfiguration: StorageConfiguration(path: "~/", filename: ".marciai.json"))
 //      // Hard code the configuration file
 //      // At first version we only allow user config one configuration and one group
 //      // In a group can have multiple workflow
@@ -34,7 +34,7 @@ struct AppPreferences {
     AppPreferences(
       hideAppOnLaunch: false,
       machportIsEnabled: true,
-      storageConfiguration: StorageConfiguration(path: "~/", filename: ".keyboard-cowboy.json"))
+      storageConfiguration: StorageConfiguration(path: "~/", filename: ".marciai.json"))
   }
 
   static func emptyFile() -> AppPreferences {
