@@ -6,6 +6,7 @@ import Cocoa
 import SwiftUI
 import LaunchArguments
 import InputSources
+import Supabase
 @_exported import Inject
 
 @main
@@ -42,6 +43,10 @@ struct KeyboardCowboy: App {
     Task { @MainActor in
       InjectConfiguration.animation = .spring()
       Benchmark.shared.isEnabled = launchArguments.isEnabled(.benchmark)
+    }
+    
+    Task {
+      await GlobalUtils.shared.insertEvent(event: Event(action_type: "start_app"))
     }
 
     if launchArguments.isEnabled(.injection) { _ = InjectConfiguration.load }

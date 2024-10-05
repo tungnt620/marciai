@@ -9,13 +9,10 @@ import Combine
 
 final class ChatGptCommandRunner {
   private let keyboardCommandRunner: KeyboardCommandRunner
-  private let apiLimiter: ApiUsageLimiter
   @AppStorage("Setting.chatGptApiKey") var chatGptApiKey: String = ""
-  private let myApiKey = "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"
   
   internal init(_ keyboardCommandRunner: KeyboardCommandRunner) {
     self.keyboardCommandRunner = keyboardCommandRunner
-    self.apiLimiter = ApiUsageLimiter(limitPerDuration: 50, durationInDays: 7) // Limit to 100 API calls per 7 days
   }
   
   func run(_ input: String) async throws {
@@ -37,52 +34,62 @@ final class ChatGptCommandRunner {
       // Get the string from the pasteboard if available
       var selectexText = ""
       // Retrieve Plain Text
-          if let plainText = pasteboard.string(forType: .string) {
-              print("Plain Text: \(plainText)")
-            if (!plainText.isEmpty) {
-              selectexText = plainText
-            }
-          } else {
-              print("No plain text found")
-          }
-
-          // Retrieve Rich Text (RTF)
-          if let rtfData = pasteboard.data(forType: .rtf),
-             let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil) {
-              print("Rich Text: \(rtfString.string)")
-            if (!rtfString.string.isEmpty) {
-              selectexText = rtfString.string
-            }
-          } else {
-              print("No rich text found")
-          }
-
+      if let plainText = pasteboard.string(forType: .string) {
+        print("Plain Text: \(plainText)")
+        if (!plainText.isEmpty) {
+          selectexText = plainText
+        }
+      } else {
+        print("No plain text found")
+      }
+      
+      // Retrieve Rich Text (RTF)
+      if let rtfData = pasteboard.data(forType: .rtf),
+         let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil) {
+        print("Rich Text: \(rtfString.string)")
+        if (!rtfString.string.isEmpty) {
+          selectexText = rtfString.string
+        }
+      } else {
+        print("No rich text found")
+      }
+      
       // If RTF is not available, try to get the content as HTML
-          if let htmlData = pasteboard.data(forType: .html),
-             let htmlString = String(data: htmlData, encoding: .utf8),
-             let data = htmlString.data(using: .utf8),
-             let attributedString = try? NSAttributedString(data: data,
-                                                            
-                                                            options: [.documentType: NSAttributedString.DocumentType.html,
-                                                                      .characterEncoding: String.Encoding.utf8.rawValue],                                                            documentAttributes: nil) {
-            print("HTML content retrieved: \(attributedString.string)")
-            if (!selectexText.isEmpty && !attributedString.string.isEmpty) {
-              selectexText = attributedString.string
-            }
-//              return attributedString
-          } else {
-            print("No rich text found")
-          }
-              
+      if let htmlData = pasteboard.data(forType: .html),
+         let htmlString = String(data: htmlData, encoding: .utf8),
+         let data = htmlString.data(using: .utf8),
+         let attributedString = try? NSAttributedString(data: data,
+                                                        
+                                                        options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                  .characterEncoding: String.Encoding.utf8.rawValue],                                                            documentAttributes: nil) {
+        print("HTML content retrieved: \(attributedString.string)")
+        if (!selectexText.isEmpty && !attributedString.string.isEmpty) {
+          selectexText = attributedString.string
+        }
+        //              return attributedString
+      } else {
+        print("No rich text found")
+      }
+      
       print("selected text \(selectexText)")
       
-      if (chatGptApiKey == myApiKey) {
-        if apiLimiter.canMakeApiCall() {
+      if (chatGptApiKey.trimmingCharacters(in: .whitespacesAndNewlines) == "") {
+        if GlobalUtils.shared.apiLimiter.canMakeApiCall() {
+          Task {
+            await GlobalUtils.shared.insertEvent(event: Event(action_type: "use_tom_chatgpt_key"))
+          }
+          
           showChatGptResultWindow(input: input, selectexText: selectexText)
         } else {
+          Task {
+            await GlobalUtils.shared.insertEvent(event: Event(action_type: "no_more_usage"))
+          }
           showLimitAlertWindow()
         }
       } else {
+          Task {
+            await GlobalUtils.shared.insertEvent(event: Event(action_type: "use_own_chatgpt_key"))
+          }
         showChatGptResultWindow(input: input, selectexText: selectexText)
       }
     }
@@ -214,7 +221,7 @@ func runAppleScript(text: String) {
 @MainActor
 class MarkdownStreamModel: ObservableObject {
   @AppStorage("Setting.chatGptApiKey") var chatGptApiKey: String = ""
-
+  
   @Published var markdownContent: String = "" {
     didSet {
       triggerThrottledUpdate()
@@ -225,11 +232,17 @@ class MarkdownStreamModel: ObservableObject {
   private var throttleCancellable: AnyCancellable?
   
   // Publisher to debounce the updates
-  private let throttleDelay = 1
+  private let throttleDelay = 0.5
   
   func streamMarkdown(_ input: String, _ selectedText: String) {
+    var apiKey: String = ""
+    if (chatGptApiKey.trimmingCharacters(in: .whitespacesAndNewlines) != "") {
+      apiKey = chatGptApiKey
+    } else {
+      apiKey = GlobalUtils.myApiKey
+    }
     
-    let client = ChatGPTClient(apiKey: chatGptApiKey)
+    let client = ChatGPTClient(apiKey: apiKey)
     
     let messages: [[String: Any]] = [
       ["role": "system", "content": "You are helpfull assistant that responds Markdown, you usually split your output into paragraphs."],
@@ -243,6 +256,9 @@ class MarkdownStreamModel: ObservableObject {
     }, onError: { error in
       // Custom logic to handle errors
       print("Error: \(error)")
+      Task {
+        try await GlobalUtils.shared.insertEvent(event: Event(action_type: "error_from_chatgpt", detail: error.asString()))
+      }
     })
   }
   
@@ -252,7 +268,7 @@ class MarkdownStreamModel: ObservableObject {
     throttleCancellable = Just(markdownContent)
       .delay(for: .seconds(throttleDelay), scheduler: RunLoop.main)
       .sink { [weak self] newValue in
-        print("new value: \(newValue)")
+//        print("new value: \(newValue)")
         self?.objectWillChange.send()  // Send update notification
       }
   }
@@ -284,7 +300,7 @@ struct PopupView: View {
         if showCopiedText {
           Text("Copied!")
             .font(.caption)
-//            .foregroundColor(.green)
+          //            .foregroundColor(.green)
             .transition(.opacity)  // Fade in/out
             .padding(.bottom, 8)
         }
@@ -367,11 +383,11 @@ func showChatGptResultWindow(input: String, selectexText: String) {
   
   
   // Check if the window is already created
-  if let existingWindow = NSApplication.shared.windows.first(where: { $0.identifier == NSUserInterfaceItemIdentifier(rawValue: "chatGptResultWindow") }) {
-    existingWindow.contentView = popupView.view
-    existingWindow.makeKeyAndOrderFront(nil) // Bring existing window to the front
-    return
-  }
+    if let existingWindow = NSApplication.shared.windows.first(where: { $0.identifier == NSUserInterfaceItemIdentifier(rawValue: "chatGptResultWindow") }) {
+      existingWindow.contentView = popupView.view
+      existingWindow.makeKeyAndOrderFront(nil) // Bring existing window to the front
+      return
+    }
   
   // Get the main screen size
   if let screen = NSScreen.main {
@@ -418,14 +434,48 @@ func showChatGptResultWindow(input: String, selectexText: String) {
 
 
 struct ReachApiLimitView: View {
+  @Namespace var namespace
   
   var body: some View {
     ZStack(alignment: .bottomTrailing) {  // Use ZStack to overlay the button in the bottom-right
-      Text("showLimitAlertWindow")
+      VStack {
+        Grid(alignment: .center, horizontalSpacing: 16, verticalSpacing: 32) {
+          VStack(alignment: .leading) {
+            Text("You have reached the usage limit")
+              .font(.headline)
+              .bold()
+            
+            Text("""
+                   The usage limit is 50 AI generations per 7 days. It will reset after 7 days.
+                   Please consider the following options:\n
+                   """)
+            .font(.caption)
+            
+            Text("""
+                   1. Use your own ChatGPT API key. You can find the guide at https://marciai.app/faq#how-to-get-chatgpt-api-key.\n
+                   """)
+            .font(.caption)
+            
+            Text("""
+                   2. Enjoy unlimited usage with a subscription, which will be more affordable than purchasing a ChatGPT account.
+                   This feature is coming soon. Stay updated at https://marciai.app/faq#how-to-use-without-chatgpt-api-key.\n
+                   """)
+            .font(.caption)
+            
+            Text("""
+                   3. Provide feedback to earn additional usage. Reach us at tom@marciai.app. We are more than happy to hear from you!
+                   """)
+            .font(.caption)
+          }
+          .frame(maxWidth: .infinity, alignment: .leading)
+        }
+      }
+      .roundedContainer()
+      .frame(minWidth: 480, maxWidth: 480)
     }
   }
 }
-  
+
 
 @MainActor
 func showLimitAlertWindow() {
@@ -460,15 +510,6 @@ func showLimitAlertWindow() {
       styleMask: [.titled, .closable],
       backing: .buffered, defer: false
     )
-    
-    // Hide Zoom and Minimize buttons
-    if let zoomButton = popupWindow.standardWindowButton(.zoomButton) {
-      zoomButton.isHidden = true
-    }
-    
-    if let minimizeButton = popupWindow.standardWindowButton(.miniaturizeButton) {
-      minimizeButton.isHidden = true
-    }
     
     popupWindow.identifier = NSUserInterfaceItemIdentifier(rawValue: "showLimitAlertWindow")
     popupWindow.contentView = popupView.view

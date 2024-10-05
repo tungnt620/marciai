@@ -16,7 +16,8 @@ struct SidebarView: View {
     case moveWorkflows(workflowIds: Set<ContentViewModel.ID>, groupId: GroupViewModel.ID)
     case copyWorkflows(workflowIds: Set<ContentViewModel.ID>, groupId: GroupViewModel.ID)
   }
-
+  
+  @Environment(\.openURL) var openURL
   @EnvironmentObject private var publisher: GroupsPublisher
   @Namespace private var namespace
   private let configSelectionManager: SelectionManager<ConfigurationViewModel>
@@ -43,12 +44,55 @@ struct SidebarView: View {
 //      ConfigurationContainerView(configSelectionManager: configSelectionManager,
 //                                 onAction: onAction)
 
+      if #available(macOS 14.0, *) {
+          SettingsLink {
+              Text("Enter ChatGPT API key")
+          }
+          .padding(.top, 6)
+          .padding(.horizontal)
+          .padding(.bottom, 6)
+      }
+      else {
+          Button(action: {
+            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+          }, label: {
+            Text("Enter ChatGPT API key")
+          })
+          .buttonStyle(.zen(.init(calm: true, color: .systemGreen, grayscaleEffect: .constant(true))))
+        .padding(.top, 6)
+        .padding(.bottom, 6)
+      }
+      
+      Divider()
+      
       GroupContainerView(namespace,
                          contentSelectionManager: contentSelectionManager,
                          groupSelectionManager: groupSelectionManager,
                          onAction: onAction,
                          focus: focus)
 
+      Divider()
+      
+      HStack {
+        Button(action: {
+          if let url = URL(string: "https://marciai.app/feedback") {
+              openURL(url)
+          }
+        }, label: {
+          Text("Feedback")
+        })
+        .padding(.vertical, 4)
+        .padding(.horizontal)
+        
+        Button(action: {
+          if let url = URL(string: "https://marciai.app/roadmap") {
+              openURL(url)
+          }
+        }, label: {
+          Text("Roadmap")
+        })
+      }
+      
       // Hide ui
 //      UserModeContainerView(onAction: onAction)
     }

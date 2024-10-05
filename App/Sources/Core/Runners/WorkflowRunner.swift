@@ -51,6 +51,11 @@ final class WorkflowRunner: WorkflowRunning, @unchecked Sendable {
   func run(_ workflow: Workflow, for shortcut: KeyShortcut,
            executionOverride: Workflow.Execution? = nil,
            machPortEvent: MachPortEvent, repeatingEvent: Bool) {
+    
+    Task {
+      await GlobalUtils.shared.insertEvent(event: Event(action_type: "workflow_run"))
+    }
+    
     notifications.notifyRunningWorkflow(workflow)
     let commands = workflow.commands.filter(\.isEnabled)
 

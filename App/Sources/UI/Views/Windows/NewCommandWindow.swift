@@ -88,6 +88,10 @@ struct NewCommandWindow: Scene {
       onDismiss: {
         closeWindow()
       }, onSave: { payload, title in
+        Task {
+          await GlobalUtils.shared.insertEvent(event: Event(action_type: "create_new_command", metadata: ["selection" : selection.rawValue]))
+        }
+        
         onSave(workflowId, commandId, title, payload)
         closeWindow()
       })

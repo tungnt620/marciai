@@ -13,6 +13,11 @@ struct GeneralSettingsView: View {
     }
     .frame(minWidth: 480, minHeight: 100, alignment: .center)
       .roundedContainer()
+      .onAppear() {
+        Task {
+          await GlobalUtils.shared.insertEvent(event: Event(action_type: "open_chatgpt_key_box"))
+        }
+      }
   }
 }
 
