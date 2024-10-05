@@ -84,13 +84,13 @@ struct SidebarView: View {
         .padding(.vertical, 4)
         .padding(.horizontal)
         
-        Button(action: {
-          if let url = URL(string: "https://marciai.app/roadmap") {
-              openURL(url)
-          }
-        }, label: {
-          Text("Roadmap")
-        })
+//        Button(action: {
+//          if let url = URL(string: "https://marciai.app/roadmap") {
+//              openURL(url)
+//          }
+//        }, label: {
+//          Text("Roadmap")
+//        })
       }
       
       // Hide ui

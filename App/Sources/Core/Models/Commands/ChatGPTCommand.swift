@@ -9,7 +9,7 @@ struct ChatGptCommand: MetaDataProviding {
     var meta: Command.MetaData
 
     public init(id: String = UUID().uuidString,
-                name: String = "ChatGptCommand",
+                name: String = "ChatGpt command",
                 prompt: String,
                 notification: Command.Notification? = nil) {
         self.prompt = prompt

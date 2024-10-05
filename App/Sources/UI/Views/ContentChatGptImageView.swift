@@ -5,13 +5,9 @@ struct ContentChatGptImageView: View {
   let size: CGFloat
 
   var body: some View {
-    IconView(
-      icon: .init(bundleIdentifier: "/System/Applications/Shortcuts.app",
-                  path: "/System/Applications/Shortcuts.app"),
-      size: CGSize(width: size, height: size)
-    )
-      .aspectRatio(1, contentMode: .fill)
-      .frame(width: size)
+    KeyboardCowboyAsset.chatgpt.swiftUIImage
+      .resizable()
+      .frame(width: size, height: size)
   }
 }
 

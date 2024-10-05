@@ -52,9 +52,9 @@ struct NewCommandScriptView: View {
       HStack {
         ZenLabel("Scripts:")
         Spacer()
-        Button(action: { NSWorkspace.shared.open(wikiUrl) },
-               label: { Image(systemName: "questionmark.circle.fill") })
-        .buttonStyle(.calm(color: .systemYellow, padding: .small))
+//        Button(action: { NSWorkspace.shared.open(wikiUrl) },
+//               label: { Image(systemName: "questionmark.circle.fill") })
+//        .buttonStyle(.calm(color: .systemYellow, padding: .small))
       }
 
       HStack {

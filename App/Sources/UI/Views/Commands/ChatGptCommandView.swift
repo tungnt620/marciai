@@ -29,7 +29,8 @@ struct ChatGptCommandView: View {
       metaData,
       placeholder: model.placeholder,
       icon: { metaData in
-        TypingIconView(size: iconSize.width)
+        KeyboardCowboyAsset.chatgpt.swiftUIImage.resizable()
+          .frame(width: iconSize.width, height: iconSize.height)
       }, content: { metaData in
         ChatGptCommandContentView(model, onAction: onAction)
           .roundedContainer(4, padding: 0, margin: 0)
@@ -55,7 +56,7 @@ private struct ChatGptCommandContentView: View {
     ZenTextEditor(
       color: ZenColorPublisher.shared.color,
       text: $model.promt,
-      placeholder: "Enter text...", onCommandReturnKey: nil)
+      placeholder: "Enter promt...", onCommandReturnKey: nil)
     .onChange(of: model.promt) { debounce.send($0) }
   }
 }

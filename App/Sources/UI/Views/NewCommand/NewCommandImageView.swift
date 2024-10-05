@@ -28,7 +28,7 @@ struct NewCommandImageView: View {
       case .text:
         TypingIconView(size: 24)
       case .chatGpt:
-        image(for: "/System/Applications/Shortcuts.app")
+        KeyboardCowboyAsset.chatgpt.swiftUIImage.resizable()
       case .system:
         image(for: "/System")
       case .menuBar:
