@@ -46,7 +46,7 @@ struct SidebarView: View {
 
       if #available(macOS 14.0, *) {
           SettingsLink {
-              Text("Enter ChatGPT API key")
+              Text("ChatGPT API key")
           }
           .padding(.top, 6)
           .padding(.horizontal)
@@ -56,7 +56,7 @@ struct SidebarView: View {
           Button(action: {
             NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
           }, label: {
-            Text("Enter ChatGPT API key")
+            Text("ChatGPT API key")
           })
           .buttonStyle(.zen(.init(calm: true, color: .systemGreen, grayscaleEffect: .constant(true))))
         .padding(.top, 6)

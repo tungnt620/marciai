@@ -89,7 +89,7 @@ struct NewCommandWindow: Scene {
         closeWindow()
       }, onSave: { payload, title in
         Task {
-          await GlobalUtils.shared.insertEvent(event: Event(action_type: "create_new_command", metadata: ["selection" : selection.rawValue]))
+          await GlobalUtils.shared.insertEvent(event: Event(action_type: "create_new_command", metadata: ["title" : title]))
         }
         
         onSave(workflowId, commandId, title, payload)
