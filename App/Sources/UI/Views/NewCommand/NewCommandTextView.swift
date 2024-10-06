@@ -24,9 +24,9 @@ struct NewCommandTextView: View {
     HStack {
       ZenLabel("Text Command:")
       Spacer()
-      Button(action: { NSWorkspace.shared.open(wikiUrl) },
-             label: { Image(systemName: "questionmark.circle.fill") })
-      .buttonStyle(.calm(color: .systemYellow, padding: .small))
+//      Button(action: { NSWorkspace.shared.open(wikiUrl) },
+//             label: { Image(systemName: "questionmark.circle.fill") })
+//      .buttonStyle(.calm(color: .systemYellow, padding: .small))
     }
     HStack {
       TypingIconView(size: 24)

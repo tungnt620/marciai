@@ -58,9 +58,9 @@ struct NewCommandMenuBarView: View {
       HStack {
         ZenLabel("Menu Bar item:")
         Spacer()
-        Button(action: { NSWorkspace.shared.open(wikiUrl) },
-               label: { Image(systemName: "questionmark.circle.fill") })
-        .buttonStyle(.calm(color: .systemYellow, padding: .small))
+//        Button(action: { NSWorkspace.shared.open(wikiUrl) },
+//               label: { Image(systemName: "questionmark.circle.fill") })
+//        .buttonStyle(.calm(color: .systemYellow, padding: .small))
       }
       VStack {
         Menu {

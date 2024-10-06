@@ -42,7 +42,7 @@ struct NewCommandChatGptView_Previews: PreviewProvider {
       workflowId: UUID().uuidString,
       commandId: nil,
       title: "New chat gpt command",
-      selection: .text,
+      selection: .chatGpt,
       payload: .placeholder,
       onDismiss: {},
       onSave: { _, _ in })

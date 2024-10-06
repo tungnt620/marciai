@@ -21,9 +21,9 @@ struct NewCommandShortcutView: View {
       HStack {
         ZenLabel("Shortcut:")
         Spacer()
-        Button(action: { NSWorkspace.shared.open(wikiUrl) },
-               label: { Image(systemName: "questionmark.circle.fill") })
-        .buttonStyle(.calm(color: .systemYellow, padding: .small))
+//        Button(action: { NSWorkspace.shared.open(wikiUrl) },
+//               label: { Image(systemName: "questionmark.circle.fill") })
+//        .buttonStyle(.calm(color: .systemYellow, padding: .small))
       }
       Menu {
         ForEach(shortcutStore.shortcuts, id: \.name) { shortcut in
