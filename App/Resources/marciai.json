@@ -1,45 +1,45 @@
 [
   {
+    "name" : "Default configuration",
+    "id" : "32B182D7-EBD7-4B97-A8AE-B52605FE61F9",
     "userModes" : [
 
     ],
-    "id" : "32B182D7-EBD7-4B97-A8AE-B52605FE61F9",
-    "name" : "Default configuration",
     "groups" : [
       {
         "userModes" : [
 
         ],
-        "color" : "#F2A23C",
-        "symbol" : "flame",
+        "color" : "#5D5FDE",
         "id" : "33DEFB82-6182-4543-9340-07342EF8EDAF",
+        "symbol" : "terminal",
         "name" : "Code",
         "workflows" : [
           {
             "name" : "Explain code",
             "id" : "722B8D31-C0E6-4348-8E08-DC63BC3A7FA8",
-            "execution" : "concurrent",
             "commands" : [
               {
                 "chatGptCommand" : {
                   "meta" : {
-                    "name" : "ChatGptCommand",
+                    "enabled" : true,
                     "id" : "87671E24-A294-4EC2-BE7F-6B909A3D210D",
-                    "enabled" : true
+                    "name" : "ChatGpt command"
                   },
                   "prompt" : "Explain this code\n"
                 }
               }
             ],
+            "execution" : "concurrent",
             "trigger" : {
               "keyboardShortcuts" : {
                 "shortcuts" : [
                   {
-                    "lhs" : true,
                     "key" : "e",
                     "modifiers" : [
                       "fn"
                     ],
+                    "lhs" : true,
                     "id" : "9A01CD78-CEE4-4380-8ED8-819BE2BE3C13"
                   }
                 ],
@@ -48,58 +48,14 @@
             }
           },
           {
-            "execution" : "concurrent",
-            "name" : "Fix grammar",
-            "id" : "626C7B30-EC1B-4BF3-8DFF-9961EC55A6A2",
-            "commands" : [
-              {
-                "chatGptCommand" : {
-                  "prompt" : "Fix grammar, no explain, only output\n",
-                  "meta" : {
-                    "name" : "ChatGptCommand",
-                    "enabled" : true,
-                    "id" : "58016E8C-0DD6-4031-884C-751C747E1DB2"
-                  }
-                }
-              }
-            ],
             "trigger" : {
               "keyboardShortcuts" : {
                 "passthrough" : false,
                 "shortcuts" : [
                   {
-                    "modifiers" : [
-                      "fn"
-                    ],
                     "id" : "95AD5434-DE79-4F4A-A0FB-430A4B152D3E",
-                    "key" : "g",
-                    "lhs" : true
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "commands" : [
-              {
-                "chatGptCommand" : {
-                  "meta" : {
-                    "id" : "91394027-0320-4BF8-966D-751A26EBC220",
-                    "enabled" : true,
-                    "name" : "ChatGptCommand"
-                  },
-                  "prompt" : "Convert this code to java, only convert selected code\n"
-                }
-              }
-            ],
-            "trigger" : {
-              "keyboardShortcuts" : {
-                "passthrough" : false,
-                "shortcuts" : [
-                  {
-                    "key" : "j",
                     "lhs" : true,
-                    "id" : "6AD890A5-1979-4395-AEE9-374CA308B0A9",
+                    "key" : "g",
                     "modifiers" : [
                       "fn"
                     ]
@@ -107,52 +63,429 @@
                 ]
               }
             },
-            "execution" : "concurrent",
-            "name" : "Convert to java code",
-            "id" : "05788C2E-D8F3-4D27-8E72-1D487DD108B1"
-          },
-          {
+            "name" : "Fix grammar",
             "commands" : [
               {
                 "chatGptCommand" : {
+                  "prompt" : "Fix grammar, no explain, only output\n",
                   "meta" : {
                     "enabled" : true,
-                    "id" : "C942DCCB-ECB8-420F-95D9-E338959E62F5",
-                    "name" : "ChatGptCommand"
-                  },
-                  "prompt" : "Name this function better"
+                    "id" : "58016E8C-0DD6-4031-884C-751C747E1DB2",
+                    "name" : "ChatGpt command"
+                  }
                 }
               }
             ],
-            "id" : "BF86BFC1-18B9-4422-A804-CA97F4E33730",
+            "id" : "626C7B30-EC1B-4BF3-8DFF-9961EC55A6A2",
+            "execution" : "concurrent"
+          },
+          {
             "execution" : "concurrent",
             "trigger" : {
               "keyboardShortcuts" : {
+                "passthrough" : false,
                 "shortcuts" : [
                   {
                     "modifiers" : [
                       "fn"
                     ],
+                    "lhs" : true,
+                    "key" : "j",
+                    "id" : "6AD890A5-1979-4395-AEE9-374CA308B0A9"
+                  }
+                ]
+              }
+            },
+            "id" : "05788C2E-D8F3-4D27-8E72-1D487DD108B1",
+            "name" : "Convert to java code",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Convert this code to java\n",
+                  "meta" : {
+                    "id" : "91394027-0320-4BF8-966D-751A26EBC220",
+                    "name" : "ChatGpt command",
+                    "enabled" : true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id" : "BF86BFC1-18B9-4422-A804-CA97F4E33730",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
                     "key" : "c",
+                    "modifiers" : [
+                      "fn"
+                    ],
                     "id" : "711C6A48-811C-4158-8BF9-BA6478200A80",
+                    "lhs" : true
+                  }
+                ]
+              }
+            },
+            "name" : "Name it better",
+            "execution" : "concurrent",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "name" : "ChatGpt command",
+                    "id" : "C942DCCB-ECB8-420F-95D9-E338959E62F5",
+                    "enabled" : true
+                  },
+                  "prompt" : "Name this function better"
+                }
+              }
+            ]
+          },
+          {
+            "name" : "Code refactor",
+            "execution" : "concurrent",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "lhs" : true,
+                    "id" : "61FE4CAA-FD88-4146-96AC-0687913B69B0",
+                    "key" : "r"
+                  }
+                ]
+              }
+            },
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "name" : "ChatGpt command",
+                    "enabled" : true,
+                    "id" : "453141F0-8A3D-4985-833F-303C33DD4B26"
+                  },
+                  "prompt" : "Refactor bellow code to make it more understandable, change name of variable, function if need, add some comment if need\n"
+                }
+              }
+            ],
+            "id" : "F3EDF07A-953D-444B-BC1B-17CE9792660F"
+          },
+          {
+            "execution" : "concurrent",
+            "name" : "Untitled workflow",
+            "id" : "3E7CECA6-DD43-4D0E-AC19-7E56635E7FDC",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+
+                ],
+                "passthrough" : false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#6BD35F",
+        "workflows" : [
+          {
+            "name" : "Translate to vietnamese",
+            "id" : "64CEBDB3-5B2A-4077-879F-89A7E0D3ADCF",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "98483D1A-4F43-4DD7-8C5C-BFC1751C4F1F",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "key" : "T",
                     "lhs" : true
                   }
                 ],
                 "passthrough" : false
               }
             },
-            "name" : "Name it better"
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Translate to vietnamese\n",
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "885F71BF-2844-488E-9783-EDA11A82DD94",
+                    "name" : "ChatGpt command"
+                  }
+                }
+              }
+            ],
+            "execution" : "concurrent"
+          },
+          {
+            "id" : "BAF7A2E5-E245-4BF0-9AEA-FEAF2ED5944D",
+            "execution" : "concurrent",
+            "name" : "Translate to english",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "lhs" : true,
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "id" : "AD4665FA-BE6E-4809-BF8B-93AAF6D55EF3",
+                    "key" : "T"
+                  }
+                ],
+                "passthrough" : false,
+                "holdDuration" : 1
+              }
+            },
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "id" : "A2E9CB82-7A36-4F1C-B357-BBAF15A870F9",
+                    "name" : "ChatGpt command",
+                    "enabled" : true
+                  },
+                  "prompt" : "Translate to english\n"
+                }
+              }
+            ]
+          },
+          {
+            "execution" : "concurrent",
+            "id" : "9C92420D-9DE7-48D0-AE60-2AED0D0C63CF",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "lhs" : true,
+                    "id" : "4FEDD547-6BD5-40FB-B7A5-6371E64B4139",
+                    "key" : "o",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            },
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Other words with the same meaning\n",
+                  "meta" : {
+                    "name" : "ChatGpt command",
+                    "enabled" : true,
+                    "id" : "69E951BD-DC0F-44A0-9A07-53F5E2742E99"
+                  }
+                }
+              }
+            ],
+            "name" : "Other words with the same meaning"
+          }
+        ],
+        "id" : "B26533F8-88A3-42AC-BC2B-E49868FED7F7",
+        "name" : "English",
+        "userModes" : [
+
+        ],
+        "symbol" : "globe"
+      },
+      {
+        "name" : "Writing",
+        "userModes" : [
+
+        ],
+        "symbol" : "pencil.tip",
+        "id" : "CAD317D6-63E5-4C33-A01E-FACBB119484C",
+        "workflows" : [
+          {
+            "name" : "Reply in positive",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Reply to this comment, in positive way\n",
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "9C7DE64C-44EE-4B32-832F-1B27A18085FF",
+                    "name" : "ChatGpt command"
+                  }
+                }
+              }
+            ],
+            "id" : "7A40F599-D118-4670-9F95-5E50BF444731",
+            "execution" : "concurrent",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "id" : "C776EBA1-0028-4D1F-B4C6-7EB157016E34",
+                    "lhs" : true,
+                    "key" : "w",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "id" : "D927E8F6-0CC4-4844-B473-8A61CD307B74",
+                    "key" : "r",
+                    "lhs" : true,
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "key" : "w",
+                    "id" : "B7914C3C-5FEF-49E5-BBB9-1E6C3C13F3F2",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "lhs" : true
+                  },
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "id" : "60029122-2D52-4370-BB3C-7EBA9DDA098F",
+                    "key" : "c",
+                    "lhs" : true
+                  }
+                ],
+                "passthrough" : false
+              }
+            },
+            "name" : "Counter feedback",
+            "id" : "E35029E9-836A-4615-8F06-9D991E3D14ED",
+            "execution" : "concurrent",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "name" : "ChatGpt command",
+                    "id" : "EC661626-BF8E-499D-841E-5E1F244C31FE",
+                    "enabled" : true
+                  },
+                  "prompt" : "Add counterfeedback for this comment\n"
+                }
+              }
+            ]
           },
           {
             "commands" : [
               {
                 "chatGptCommand" : {
-                  "prompt" : "Refactor bellow code to make it more understandable, change name of variable, function if need, add some comment if need\n",
+                  "prompt" : "Make it more clarify\n",
+                  "meta" : {
+                    "id" : "ECEC8EB3-1184-4FDB-AD09-87710B6504A2",
+                    "enabled" : true,
+                    "name" : "ChatGpt command"
+                  }
+                }
+              }
+            ],
+            "id" : "40C58453-4F68-42C6-BBE4-A01A0837E8E5",
+            "execution" : "concurrent",
+            "name" : "Help me reply",
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "passthrough" : false,
+                "shortcuts" : [
+                  {
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "key" : "w",
+                    "id" : "F4450024-00AF-4E43-8C66-03FCE87EC695",
+                    "lhs" : true
+                  },
+                  {
+                    "key" : "t",
+                    "lhs" : true,
+                    "id" : "1B1BF758-C13B-4C85-B6A7-9F7134BAC143",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "color" : "#F9D64A"
+      },
+      {
+        "userModes" : [
+
+        ],
+        "name" : "Social",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "prompt" : "Create twitter post with bellow idea\n",
                   "meta" : {
                     "enabled" : true,
-                    "id" : "453141F0-8A3D-4985-833F-303C33DD4B26",
-                    "name" : "ChatGptCommand"
+                    "id" : "88AC0870-49F1-4146-98E9-A77572790EF5",
+                    "name" : "ChatGpt command"
                   }
+                }
+              }
+            ],
+            "trigger" : {
+              "keyboardShortcuts" : {
+                "shortcuts" : [
+                  {
+                    "id" : "E763AC79-8F46-47E8-9206-2BECC164D642",
+                    "lhs" : true,
+                    "key" : "s",
+                    "modifiers" : [
+                      "fn"
+                    ]
+                  },
+                  {
+                    "key" : "c",
+                    "modifiers" : [
+                      "fn"
+                    ],
+                    "lhs" : true,
+                    "id" : "A1DEA46B-6AEC-4833-90F5-1DA99AEA1D86"
+                  }
+                ],
+                "passthrough" : false
+              }
+            },
+            "id" : "E3FA3367-8D6F-470D-AE9B-537AA20E66A1",
+            "execution" : "concurrent",
+            "name" : "Create twitter post"
+          },
+          {
+            "execution" : "concurrent",
+            "commands" : [
+              {
+                "chatGptCommand" : {
+                  "meta" : {
+                    "name" : "ChatGpt command",
+                    "enabled" : true,
+                    "id" : "0D6F7B4D-2F65-492A-B31A-55DEC8BC61DE"
+                  },
+                  "prompt" : "Make twitter shorter\n"
                 }
               }
             ],
@@ -161,21 +494,23 @@
                 "passthrough" : false,
                 "shortcuts" : [
                   {
-                    "id" : "61FE4CAA-FD88-4146-96AC-0687913B69B0",
-                    "key" : "r",
+                    "lhs" : true,
+                    "id" : "D5EC2140-F074-477D-BA49-7B8EF8022E54",
                     "modifiers" : [
                       "fn"
                     ],
-                    "lhs" : true
+                    "key" : "t"
                   }
                 ]
               }
             },
-            "name" : "Code refactor",
-            "execution" : "concurrent",
-            "id" : "F3EDF07A-953D-444B-BC1B-17CE9792660F"
+            "id" : "FB166D11-B951-4DDC-9246-1F75751AC923",
+            "name" : "Shorter twitter post"
           }
-        ]
+        ],
+        "symbol" : "folder",
+        "color" : "#000",
+        "id" : "C04510EF-CCD6-418F-BF64-ACDE45581188"
       }
     ]
   }
