@@ -20,7 +20,7 @@ private struct EventSupabase: Encodable, Sendable {
 class GlobalUtils {
   static let shared = GlobalUtils()
   
-  static let myApiKey = "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"
+  static let myApiKey = ""
   
   let apiLimiter: ApiUsageLimiter = ApiUsageLimiter(limitPerDuration: 50, durationInDays: 7) // Limit to 100 API calls per 7 days
   private let client: SupabaseClient
