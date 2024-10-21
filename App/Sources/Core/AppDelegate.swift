@@ -68,6 +68,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     return true
   }
 
+  func windowDidBecomeMain(_ notification: Notification) {
+    TextSelectionObserver.shared.enableGlobalEventMonitor()
+  }
+  
+  func windowDidResignMain(_ notification: Notification) {
+    TextSelectionObserver.shared.enableGlobalEventMonitor()
+  }
+  
   // MARK: Private methods
 
   @MainActor

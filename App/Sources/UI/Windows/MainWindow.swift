@@ -1,5 +1,6 @@
 import Bonzai
 import SwiftUI
+import Combine
 
 struct MainWindow: Scene {
   private let core: Core
@@ -7,6 +8,10 @@ struct MainWindow: Scene {
 
   @Environment(\.openWindow) private var openWindow
   private let onScene: (AppScene) -> Void
+
+  @StateObject private var textSelectionObserver = TextSelectionObserver.shared
+  @State private var floatingPanelController: FloatingPanelController?
+  @State private var cancellables = Set<AnyCancellable>() // To store Combine subscriptions
 
   init(_ core: Core, onScene: @escaping (AppScene) -> Void) {
     self.core = core
@@ -19,7 +24,26 @@ struct MainWindow: Scene {
         onScene($0)
       })
       .animation(.easeInOut, value: core.contentStore.state)
-      .onAppear { NSWindow.allowsAutomaticWindowTabbing = false }
+      .onAppear {
+        NSWindow.allowsAutomaticWindowTabbing = false
+        
+        // Initialize the floating panel but keep it hidden initially
+        floatingPanelController = FloatingPanelController(
+          $focus,
+          core,
+          onScene: {
+            onScene($0)
+          },
+          textSelectionObserver: textSelectionObserver
+        )
+        
+        // Listen for changes in text selection and update panel visibility
+        textSelectionObserver.$currentSelectedText.sink { _ in
+          floatingPanelController?.updatePanelVisibility()
+        }
+        .store(in: &cancellables)
+      }
+      
     }
     .windowResizability(.contentSize)
     .windowStyle(.hiddenTitleBar)

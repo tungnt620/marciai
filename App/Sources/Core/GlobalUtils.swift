@@ -1,6 +1,13 @@
 import Foundation
 import Supabase
 import IOKit
+import Carbon
+import Cocoa
+import KeyCodes
+import Foundation
+import SwiftUI
+import MarkdownUI
+import Combine
 
 
 public struct Event: Encodable, Sendable {
@@ -71,3 +78,47 @@ func getDeviceID() -> String {
     return newUUID
   }
 }
+
+func simulateCopyShortcut(keyboardCommandRunner: KeyboardCommandRunner) async  throws{
+  try await Task.sleep(for: .milliseconds(10))
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyDown, flags: .maskCommand)
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
+  try await Task.sleep(for: .milliseconds(10))
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyDown, flags: .maskCommand)
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
+  try await Task.sleep(for: .milliseconds(10))
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyDown, flags: .maskCommand)
+  try keyboardCommandRunner.machPort?.post(kVK_ANSI_C, type: .keyUp, flags: .maskCommand)
+  try await Task.sleep(for: .milliseconds(50))
+}
+
+func fetchSelectedTextFromPasteboard() -> String {
+   let pasteboard = NSPasteboard.general
+   var selectedText = ""
+   
+   // Retrieve Plain Text
+   if let plainText = pasteboard.string(forType: .string), !plainText.isEmpty {
+     selectedText = plainText
+   }
+   
+   // Retrieve Rich Text (RTF)
+   if let rtfData = pasteboard.data(forType: .rtf),
+      let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil),
+      !rtfString.string.isEmpty {
+     selectedText = rtfString.string
+   }
+   
+   // Retrieve HTML Text
+   if let htmlData = pasteboard.data(forType: .html),
+      let htmlString = String(data: htmlData, encoding: .utf8),
+      let attributedString = try? NSAttributedString(
+       data: Data(htmlString.utf8),
+       options: [.documentType: NSAttributedString.DocumentType.html,
+                 .characterEncoding: String.Encoding.utf8.rawValue],
+       documentAttributes: nil),
+      !attributedString.string.isEmpty {
+     selectedText = attributedString.string
+   }
+   
+   return selectedText
+ }
