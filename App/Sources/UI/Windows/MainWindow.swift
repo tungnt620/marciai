@@ -10,7 +10,7 @@ struct MainWindow: Scene {
   private let onScene: (AppScene) -> Void
 
   @StateObject private var textSelectionObserver = TextSelectionObserver.shared
-  @State private var floatingPanelController: FloatingPanelController?
+  @State private var floatingButtonController: FloatingButtonController?
   @State private var cancellables = Set<AnyCancellable>() // To store Combine subscriptions
 
   init(_ core: Core, onScene: @escaping (AppScene) -> Void) {
@@ -28,7 +28,7 @@ struct MainWindow: Scene {
         NSWindow.allowsAutomaticWindowTabbing = false
         
         // Initialize the floating panel but keep it hidden initially
-        floatingPanelController = FloatingPanelController(
+        floatingButtonController = FloatingButtonController(
           $focus,
           core,
           onScene: {
@@ -39,7 +39,7 @@ struct MainWindow: Scene {
         
         // Listen for changes in text selection and update panel visibility
         textSelectionObserver.$currentSelectedText.sink { _ in
-          floatingPanelController?.updatePanelVisibility()
+          floatingButtonController?.updatePanelVisibility()
         }
         .store(in: &cancellables)
       }
