@@ -1,5 +1,6 @@
 import Cocoa
 import SwiftUI
+import Carbon
 
 class FloatingButtonController: NSWindowController {
   @ObservedObject var textSelectionObserver: TextSelectionObserver
@@ -7,8 +8,6 @@ class FloatingButtonController: NSWindowController {
   private let core: Core
   private var focus: FocusState<AppFocus?>.Binding
   private let onScene: (AppScene) -> Void
-  
-  @State private var showPopover = true // State to control popover visibility
   
   init(_ focus: FocusState<AppFocus?>.Binding, _ core: Core, onScene: @escaping (AppScene) -> Void, textSelectionObserver: TextSelectionObserver) {
     self.core = core
@@ -50,39 +49,26 @@ class FloatingButtonController: NSWindowController {
     // Set the NSHostingView as the content view for the panel
     panel.contentView = hostingView
     
-    // Automatically adjust the panel size to fit its content
-    panel.contentView?.invalidateIntrinsicContentSize()
-    panel.contentView?.translatesAutoresizingMaskIntoConstraints = false
-    
     super.init(window: panel)
-    
-    // Force the panel to fit the content by setting size constraints
-    NSLayoutConstraint.activate([
-      hostingView.widthAnchor.constraint(equalToConstant: hostingView.intrinsicContentSize.width),
-      hostingView.heightAnchor.constraint(equalToConstant: hostingView.intrinsicContentSize.height)
-    ])
-
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // Dynamically adjust the panel's position and size
   func updatePanelVisibility() {
     DispatchQueue.main.async {
-      if !self.textSelectionObserver.currentSelectedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-        self.window?.orderFront(nil) // Show the panel
-      } else {
+      if self.textSelectionObserver.currentSelectedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
         self.window?.orderOut(nil) // Hide the panel if no text is selected
+      } else {
+        self.window?.orderFront(nil) // Show the panel
       }
     }
   }
 }
 
 struct SimplePopoverExample: View {
-  @State private var showPopover = true // Set to true initially
-  
+  @State private var showPopover = false // Set to true initially
   
   private let core: Core
   private var focus: FocusState<AppFocus?>.Binding
@@ -98,7 +84,11 @@ struct SimplePopoverExample: View {
   var body: some View {
     VStack {
       Button(action: {
-          self.showPopover = true // Show the popover when the button is clicked
+        copyTextToPasteboard(text: TextSelectionObserver.shared.currentSelectedText)
+        self.showPopover = true // Show the popover when the button is clicked
+        Task {
+          await GlobalUtils.shared.insertEvent(event: Event(action_type: "click_floating_magic_button"))
+        }
       }) {
           Image(systemName: "wand.and.stars") // Use SF Symbols or a custom image
               .resizable()

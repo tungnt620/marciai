@@ -43,7 +43,6 @@ class TextSelectionObserver: ObservableObject {
   // Update the selected text and its bounds
    func updateSelectedText() {
        let text = getSelectedText()
-       print("text", text)
        DispatchQueue.main.async {
          self.currentSelectedText = text
        }

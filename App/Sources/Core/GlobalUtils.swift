@@ -93,32 +93,43 @@ func simulateCopyShortcut(keyboardCommandRunner: KeyboardCommandRunner) async  t
 }
 
 func fetchSelectedTextFromPasteboard() -> String {
-   let pasteboard = NSPasteboard.general
-   var selectedText = ""
-   
-   // Retrieve Plain Text
-   if let plainText = pasteboard.string(forType: .string), !plainText.isEmpty {
-     selectedText = plainText
-   }
-   
-   // Retrieve Rich Text (RTF)
-   if let rtfData = pasteboard.data(forType: .rtf),
-      let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil),
-      !rtfString.string.isEmpty {
-     selectedText = rtfString.string
-   }
-   
-   // Retrieve HTML Text
-   if let htmlData = pasteboard.data(forType: .html),
-      let htmlString = String(data: htmlData, encoding: .utf8),
-      let attributedString = try? NSAttributedString(
-       data: Data(htmlString.utf8),
-       options: [.documentType: NSAttributedString.DocumentType.html,
-                 .characterEncoding: String.Encoding.utf8.rawValue],
-       documentAttributes: nil),
-      !attributedString.string.isEmpty {
-     selectedText = attributedString.string
-   }
-   
-   return selectedText
- }
+  let pasteboard = NSPasteboard.general
+  var selectedText = ""
+  
+  // Retrieve Plain Text
+  if let plainText = pasteboard.string(forType: .string), !plainText.isEmpty {
+    selectedText = plainText
+  }
+  
+  // Retrieve Rich Text (RTF)
+  if let rtfData = pasteboard.data(forType: .rtf),
+     let rtfString = NSAttributedString(rtf: rtfData, documentAttributes: nil),
+     !rtfString.string.isEmpty {
+    selectedText = rtfString.string
+  }
+  
+  // Retrieve HTML Text
+  if let htmlData = pasteboard.data(forType: .html),
+     let htmlString = String(data: htmlData, encoding: .utf8),
+     let attributedString = try? NSAttributedString(
+      data: Data(htmlString.utf8),
+      options: [.documentType: NSAttributedString.DocumentType.html,
+                .characterEncoding: String.Encoding.utf8.rawValue],
+      documentAttributes: nil),
+     !attributedString.string.isEmpty {
+    selectedText = attributedString.string
+  }
+  
+  return selectedText
+}
+
+func copyTextToPasteboard(text: String) {
+  // Get the general pasteboard
+  let pasteboard = NSPasteboard.general
+  
+  // Clear any existing contents
+  pasteboard.clearContents()
+  
+  // Set the string to the pasteboard
+  pasteboard.setString(text, forType: .string)
+}
